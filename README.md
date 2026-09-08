@@ -1,43 +1,111 @@
-# Astro Starter Kit: Minimal
+# La Loma.dev
 
-```sh
-pnpm create astro@latest -- --template minimal
+Personal portfolio of **Paloma Macedo**, a Senior Frontend Engineer with 15+ years of experience designing and building clear, accessible, and meaningful digital experiences.
+
+> Making complex things feel obvious.
+
+## About the project
+
+La Loma.dev is more than a project gallery. It is a field guide to how I think, what I build, and what I explore across frontend engineering, solution architecture, UX, accessibility, and AI-powered experiences.
+
+The portfolio is organized into five chapters:
+
+- **About** — Who I am, what I believe, and how I see the world.
+- **Work** — Selected projects, case studies, and digital experiences.
+- **Shelf** — Books, ideas, tools, and things worth keeping.
+- **Experience** — 15+ years turning problems into meaningful solutions.
+- **Talk** — Contact details and opportunities to collaborate.
+
+## Tech stack
+
+- [Astro](https://astro.build/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- TypeScript
+- Semantic HTML
+- Responsive and accessible UI
+
+## Getting started
+
+### Requirements
+
+- Node.js
+- [pnpm](https://pnpm.io/)
+
+### Installation
+
+```bash
+pnpm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Development
 
-## 🚀 Project Structure
+```bash
+pnpm dev
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+The development server is available at `http://localhost:4321` by default.
+
+### Production build
+
+```bash
+pnpm build
+```
+
+### Preview the production build
+
+```bash
+pnpm preview
+```
+
+### Format the code
+
+```bash
+pnpm exec prettier --write .
+```
+
+## Project structure
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── components/     Reusable interface components
+├── layouts/        Shared page layouts
+├── pages/          Astro routes
+└── styles/         Global styles and design tokens
+
+public/
+├── icons/          Chapter and interface icons
+└── images/         Static visual assets
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Design direction
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+The visual language combines editorial layouts with a bold, playful personality:
 
-Any static assets, like images, can be placed in the `public/` directory.
+- black, yellow, white, and emerald color palette;
+- expressive display typography paired with monospace text;
+- chapter-based navigation;
+- hand-drawn graphic details;
+- intentional motion and interaction;
+- strong contrast and clear visual hierarchy.
 
-## 🧞 Commands
+## Quality principles
 
-All commands are run from the root of the project, from a terminal:
+- Semantic, accessible markup
+- Keyboard-friendly interactions
+- Responsive layouts
+- Progressive enhancement
+- Optimized static assets
+- Clear component boundaries
+- Maintainable utility classes
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+## Author
 
-## 👀 Want to learn more?
+**Paloma Macedo**  
+Senior Frontend Engineer · React · TypeScript · UX · Frontend Architecture
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- [GitHub](https://github.com/palomaMacedo)
+- [Portfolio](https://palomamacedo.dev)
+
+---
+
+Built with curiosity by **La Loma.dev**.

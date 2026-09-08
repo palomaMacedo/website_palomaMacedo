@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title id="title">Experience — montanha com bandeira</title>
+  <path d="M50 198 119 86l87 112z" fill="#111" stroke="#111" stroke-width="8" stroke-linejoin="round"/>
+  <path d="m89 135 30-49 31 41-15-8-15 14-14-13z" fill="#fff"/>
+  <path d="M119 89V42" stroke="#111" stroke-width="8" stroke-linecap="round"/>
+  <path d="M123 45c22-14 35 11 58-1v38c-23 12-37-13-58 1z" fill="#08a657" stroke="#111" stroke-width="8" stroke-linejoin="round"/>
+</svg>
