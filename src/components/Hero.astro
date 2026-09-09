@@ -1,96 +1,127 @@
 ---
-import { Image } from 'astro:assets';
-import palomaHero from '../assets/images/paloma.png';
+import { Image } from 'astro:assets'
+import palomaHero from '../assets/images/paloma.png'
 ---
 
 <section
   id="hero"
-  class="relative -mt-20 min-h-[calc(100svh-96px)] overflow-hidden bg-yellow-300 [clip-path:polygon(0_10%,100%_0,100%_86%,0_100%)]"
+  class="relative -mt-16 overflow-hidden bg-yellow-300
+         [clip-path:polygon(0_5%,100%_0,100%_96%,0_100%)]
+         md:-mt-20 md:min-h-[calc(100svh-96px)]
+         md:[clip-path:polygon(0_10%,100%_0,100%_86%,0_100%)]"
 >
   <div
-    class="relative mx-auto min-h-[calc(100svh-96px)] max-w-7xl px-6 md:px-10"
+    class="relative mx-auto flex max-w-7xl flex-col px-6 pb-28 pt-28
+           md:min-h-[calc(100svh-96px)] md:px-10 md:pb-32 md:pt-24"
   >
-    <div class="relative z-20 pt-32 md:w-3/5 md:pt-24">
+   
+    <div class="relative z-20 md:w-[58%]">
       <div class="-rotate-2">
         <p
-          class="font-sans text-base font-extrabold tracking-wide text-emerald-600 uppercase"
+          class="font-sans text-xs font-extrabold tracking-wide
+                 text-emerald-600 uppercase
+                 sm:text-sm md:text-base"
         >
           A Field Guide to Digital Experiences
         </p>
 
-        <div class="h-1 w-20 -rotate-2 rounded-full bg-emerald-600"></div>
+        <div
+          class="mt-1 h-1 w-16 -rotate-2 rounded-full
+                 bg-emerald-600 md:w-20"
+        >
+        </div>
       </div>
 
       <h1
-        class="font-display mt-6 font-extrabold tracking-[-0.03em] text-black uppercase"
+        class="mt-5 font-display font-extrabold leading-28
+               tracking-[-0.04em] text-black uppercase
+               text-[clamp(3.5rem,17vw,5.5rem)]
+               md:mt-6 md:text-[clamp(5rem,7.2vw,7rem)]"
       >
-        <span class="leading-8xl block text-8xl"> Making </span>
-
-        <span class="leading-8xl block text-8xl md:text-8xl"> Complex </span>
-
-        <span class="leading-8xl block text-8xl md:text-8xl">
-          Things Feel
-        </span>
-
-        <span class="leading-8xl block text-8xl md:text-8xl"> Obvious. </span>
+        <span class="block">Making</span>
+        <span class="block">Complex</span>
+        <span class="block">Things Feel</span>
+        <span class="block">Obvious.</span>
       </h1>
 
       <p
-        class="mt-7 font-mono text-base leading-relaxed font-black text-black/80"
+        class="mt-6 max-w-md font-mono text-sm leading-relaxed
+               font-black text-black/80
+               sm:text-base md:mt-7"
       >
-        I design digital experiences where<br />
+        I design digital experiences where
+        <br class="hidden sm:block" />
         technology makes sense to people.
       </p>
 
       <a
         href="#about"
-        class="group mt-8 inline-flex -rotate-2 items-center gap-5 bg-black px-7 py-5 font-mono text-[18px] leading-none font-bold tracking-[0.03em] text-white uppercase shadow-[8px_8px_0_#059669] transition-transform duration-300 hover:-translate-y-1"
+        class="group mt-7 inline-flex -rotate-2 items-center gap-4
+               bg-black px-5 py-4 font-mono text-sm leading-none
+               font-bold tracking-[0.03em] text-white uppercase
+               shadow-[6px_6px_0_#059669]
+               transition-transform duration-300
+               hover:-translate-y-1
+               sm:px-7 sm:py-5 sm:text-base
+               md:mt-8 md:gap-5 md:text-lg
+               md:shadow-[8px_8px_0_#059669]"
       >
         <span>Explore the guide</span>
 
         <span
           aria-hidden="true"
-          class="text-4xl font-bold text-emerald-500 transition-transform duration-300 ease-out group-hover:translate-x-2"
+          class="text-3xl font-bold text-emerald-500
+                 transition-transform duration-300 ease-out
+                 group-hover:translate-x-2 md:text-4xl"
         >
           →
         </span>
       </a>
     </div>
 
+    
     <div
-      class="relative z-10 mx-auto mt-12 w-4/5 max-w-xl md:absolute md:right-30 md:bottom-12 md:mt-0 md:w-1/2 md:max-w-4xl"
+      class="relative z-10 mx-auto -mb-12 mt-10 w-full max-w-md
+             sm:w-4/5
+             md:absolute md:bottom-10 md:right-8 md:mb-0 md:mt-0
+             md:w-[55%] md:max-w-3xl
+             lg:right-4 lg:w-[58%]"
     >
       <Image
         src={palomaHero}
         alt="Paloma Macedo"
-        class="h-auto w-full"
+        class="h-auto w-lg object-contain object-bottom"
         loading="eager"
       />
     </div>
+
+ 
     <div
-      class="absolute top-[70%] right-20 z-30 flex w-36 rotate-[-10deg] bg-white px-5 py-5 shadow-[6px_6px_0_rgba(0,0,0,0.08)]"
-    >
-      <p class="font-mono text-base leading-[1.05] font-black text-black">
-        15+ Years<br />
-        Building<br />
-        Digital Things<br />
-        That Matter.
-      </p>
-    </div>
-    <div
-      class="absolute top-1/4 -right-2 z-30 flex h-40 w-40 rotate-3 flex-col items-center justify-center rounded-full bg-emerald-600 text-center"
+      class="absolute right-4 top-[56%] z-30 flex size-24 rotate-3
+             flex-col items-center justify-center rounded-full
+             bg-emerald-600 text-center
+             sm:right-8 sm:size-28
+             md:right-4 md:top-1/4 md:size-56
+             lg:-right-2 lg:size-40"
     >
       <p
-        class="font-sans text-xl leading-[1.05] font-black text-white uppercase"
+        class="font-sans text-xs leading-[1.05] font-black
+               text-white uppercase
+               sm:text-sm md:text-lg lg:text-xl"
       >
         For<br />
         <span class="text-yellow-300">Curious</span><br />
         People.
       </p>
 
-      <div class="mt-2 h-1 w-14 bg-white"></div>
+      <div class="mt-2 h-0.5 w-9 bg-white md:h-1 md:w-12 lg:w-14"></div>
 
-      <i class="ph ph-heart mt-1 text-4xl text-white" aria-hidden="true"></i>
+      <i
+        class="ph ph-heart mt-1 text-xl text-white
+               md:text-3xl lg:text-4xl"
+        aria-hidden="true"
+      >
+      </i>
     </div>
   </div>
 </section>
