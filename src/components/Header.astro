@@ -1,11 +1,15 @@
 ---
-const navItems = [
-  { number: '01', label: '// About', href: '#about' },
-  { number: '02', label: '// Work', href: '#work' },
-  { number: '03', label: '// Shelf', href: '#shelf' },
-  { number: '04', label: '// Experience', href: '#experience' },
-  { number: '05', label: '// Talk', href: '#talk' },
-];
+const isHome = Astro.url.pathname === '/';
+
+const navItems = isHome
+  ? [{ number: '', label: '// MENU', href: '#contents' }]
+  : [
+      { number: '01', label: '// About', href: '/about' },
+      { number: '02', label: '// Work', href: '/work' },
+      { number: '03', label: '// Shelf', href: '/shelf' },
+      { number: '04', label: '// Experience', href: '/experience' },
+      { number: '05', label: '// Talk', href: '/talk' },
+    ];
 ---
 
 <header class="bg-black">
@@ -19,115 +23,195 @@ const navItems = [
     >
       <span class="block text-white">La</span>
       <span class="block text-white">loma</span>
-
       <span class="block text-white">
         .dev.<span class="inline-block text-4xl text-emerald-500"> _ </span>
       </span>
     </a>
 
     <nav
-      aria-label="Main navigation"
-      class="hidden items-start gap-8 text-white sm:flex md:gap-12"
-    >
-      {
-        navItems.map((item) => (
-          <a
-            href={item.href}
-            class="group font-mono text-sm font-semibold tracking-tight"
-          >
-            <span class="block text-right font-mono text-xs text-emerald-500 transition-colors">
-              {item.number}
+  aria-label="Main navigation"
+  class:list={[
+    'relative z-50 items-start gap-8 text-white md:gap-12',
+    isHome ? 'flex' : 'hidden sm:flex',
+  ]}
+>
+  {
+    navItems.map((item) => (
+      <a
+        href={item.href}
+        class="group font-mono text-sm font-semibold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-emerald-500"
+      >
+        {item.number && (
+          <span class="block text-right font-mono text-xs text-emerald-500">
+            {item.number}
+          </span>
+        )}
+
+        <span
+          class:list={[
+            'relative inline-flex items-center gap-2 text-base',
+            !isHome && 'transition-colors group-hover:text-gray-100',
+          ]}
+        >
+          {item.label}
+
+          {isHome && (
+            <span
+              aria-hidden="true"
+              class="inline-block text-3xl leading-none text-emerald-500  transition-transform duration-300 group-hover:translate-y-1 group-focus-visible:translate-y-1 motion-reduce:transform-none"
+            >
+              ↓
             </span>
+          )}
 
-            <span class="relative inline-block text-base transition-colors group-hover:text-gray-100">
-              {item.label}
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 100 12"
-                preserveAspectRatio="none"
-                fill="none"
-                class="absolute -bottom-3 left-0 h-3 w-full origin-left scale-x-0 text-emerald-500 transition-transform duration-300 group-hover:scale-x-100"
-              >
-                <path
-                  d="M2 6C10 1 17 11 25 6S40 1 50 6 66 11 75 6 90 1 98 6"
-                  stroke="currentColor"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </span>
-          </a>
-        ))
-      }
-    </nav>
+          {!isHome && (
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 100 12"
+              preserveAspectRatio="none"
+              fill="none"
+              class="absolute -bottom-3 left-0 h-3 w-full origin-left scale-x-0 text-emerald-500 transition-transform duration-300 group-hover:scale-x-100 group-focus-visible:scale-x-100 motion-reduce:transition-none"
+            >
+              <path
+                d="M2 6C10 1 17 11 25 6S40 1 50 6 66 11 75 6 90 1 98 6"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+            </svg>
+          )}
+        </span>
+      </a>
+    ))
+  }
+</nav>
 
-    <button
-      id="menu-toggle"
-      class="group relative z-50 flex h-10 w-10 flex-col items-end justify-center gap-2 sm:hidden"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <span
-        class="hamburger-line block h-0.5 w-7 bg-emerald-500 transition-all duration-300 group-aria-expanded:translate-y-0.5 group-aria-expanded:rotate-45"
-      ></span>
-
-      <span
-        class="hamburger-line block h-0.5 w-5 bg-emerald-500 transition-all duration-300 group-aria-expanded:-translate-y-0.5 group-aria-expanded:-rotate-45"
-      ></span>
-    </button>
+    {
+      !isHome && (
+        <button
+          type="button"
+          id="menu-toggle"
+          class="group relative z-50 flex h-10 w-10 flex-col items-end justify-center gap-2 sm:hidden"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="hamburger-line block h-0.5 w-7 bg-emerald-500 transition-all duration-300 group-aria-expanded:translate-y-[5px] group-aria-expanded:rotate-45" />
+          <span class="hamburger-line block h-0.5 w-5 bg-emerald-500 transition-all duration-300 group-aria-expanded:w-7 group-aria-expanded:-translate-y-[5px] group-aria-expanded:-rotate-45" />
+        </button>
+      )
+    }
   </div>
 
-  <nav
-    id="mobile-menu"
-    aria-label="Mobile navigation"
-    class="fixed inset-0 z-40 hidden bg-black px-6 pt-40 text-white sm:hidden"
-  >
-    <div class="flex flex-col">
-      {
-        navItems.map((item) => (
-          <a
-            href={item.href}
-            class="mobile-link group border-b border-white/10 py-6"
-          >
-            <span class="font-mono text-xs text-emerald-500">
-              {item.number}
-            </span>
+  {
+    !isHome && (
+      <nav
+        id="mobile-menu"
+        aria-label="Mobile navigation"
+        class="fixed inset-0 z-40 hidden overflow-y-auto bg-black px-6 pt-40 pb-8 text-white sm:hidden"
+      >
+        <div class="flex flex-col">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class="mobile-link group border-b border-white/10 py-6"
+            >
+              <span class="font-mono text-xs text-emerald-500">
+                {item.number}
+              </span>
 
-            <span class="font-display mt-1 block text-3xl leading-none uppercase">
-              {item.label}
-            </span>
-          </a>
-        ))
-      }
-    </div>
-  </nav>
+              <span class="font-display mt-1 block text-3xl leading-none uppercase">
+                {item.label}
+              </span>
+            </a>
+          ))}
+        </div>
+      </nav>
+    )
+  }
 </header>
 
 <script>
-  const button = document.querySelector('#menu-toggle');
-  const menu = document.querySelector('#mobile-menu');
-  const links = document.querySelectorAll('.mobile-link');
+  let controller: AbortController | undefined;
 
-  function toggleMenu() {
+  function initMenu() {
+    controller?.abort();
+    controller = new AbortController();
+
+    const { signal } = controller;
+
+    const button =
+      document.querySelector<HTMLButtonElement>('#menu-toggle');
+    const menu =
+      document.querySelector<HTMLElement>('#mobile-menu');
+
     if (!button || !menu) return;
 
-    const isOpen = button.getAttribute('aria-expanded') === 'true';
-
-    button.setAttribute('aria-expanded', String(!isOpen));
-    menu.classList.toggle('hidden');
-    document.body.classList.toggle('overflow-hidden', !isOpen);
-  }
-
-  button?.addEventListener('click', toggleMenu);
-
-  links.forEach((link) => {
-    link.addEventListener('click', () => {
+    function setMenuOpen(open: boolean) {
       if (!button || !menu) return;
 
-      button.setAttribute('aria-expanded', 'false');
-      menu.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute(
+        'aria-label',
+        open ? 'Close menu' : 'Open menu'
+      );
+
+      menu.classList.toggle('hidden', !open);
+      document.body.classList.toggle('overflow-hidden', open);
+    }
+
+    setMenuOpen(false);
+
+    button.addEventListener(
+      'click',
+      () => {
+        const isOpen =
+          button.getAttribute('aria-expanded') === 'true';
+
+        setMenuOpen(!isOpen);
+      },
+      { signal }
+    );
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener(
+        'click',
+        () => setMenuOpen(false),
+        { signal }
+      );
     });
-  });
+
+    document.addEventListener(
+      'keydown',
+      (event) => {
+        if (
+          event.key === 'Escape' &&
+          button.getAttribute('aria-expanded') === 'true'
+        ) {
+          setMenuOpen(false);
+          button.focus();
+        }
+      },
+      { signal }
+    );
+
+    const desktop = window.matchMedia('(min-width: 640px)');
+
+    desktop.addEventListener(
+      'change',
+      (event) => {
+        if (event.matches) setMenuOpen(false);
+      },
+      { signal }
+    );
+
+    document.addEventListener(
+      'astro:before-swap',
+      () => setMenuOpen(false),
+      { signal }
+    );
+  }
+
+  initMenu();
+  document.addEventListener('astro:page-load', initMenu);
 </script>
