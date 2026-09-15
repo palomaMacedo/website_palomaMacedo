@@ -2,7 +2,7 @@
 const isHome = Astro.url.pathname === '/';
 
 const navItems = isHome
-  ? [{ number: '', label: '// MENU', href: '#contents' }]
+  ? [{ number: '', label: '// MENU', href: '#chapter-list' }]
   : [
       { number: '01', label: '// About', href: '/about' },
       { number: '02', label: '// Work', href: '/work' },
@@ -58,7 +58,7 @@ const navItems = isHome
           {isHome && (
             <span
               aria-hidden="true"
-              class="inline-block text-3xl leading-none text-emerald-500  transition-transform duration-300 group-hover:translate-y-1 group-focus-visible:translate-y-1 motion-reduce:transform-none"
+              class="menu-arrow inline-block text-3xl leading-none text-emerald-500"
             >
               ↓
             </span>
@@ -215,3 +215,26 @@ const navItems = isHome
   initMenu();
   document.addEventListener('astro:page-load', initMenu);
 </script>
+
+
+<style>
+  .menu-arrow {
+    animation: arrow-bounce 1.4s ease-in-out infinite;
+  }
+
+  @keyframes arrow-bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(6px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-arrow {
+      animation: none;
+    }
+  }
+</style>
