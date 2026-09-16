@@ -1,18 +1,156 @@
 ---
 import '../styles/global.css';
-
 interface Props {
-  title?: string;
+  title: string;
+  description: string;
+  lang?: 'en' | 'es' | 'pt-BR';
+  canonicalPath?: string;
+  image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageType?: 'image/jpeg' | 'image/png' | 'image/webp';
+  noindex?: boolean;
 }
 
-const { title = 'La Loma.dev' } = Astro.props;
+const {
+  title,
+  description,
+  lang = 'en',
+  canonicalPath = Astro.url.pathname,
+  image,
+  imageAlt,
+  imageWidth,
+  imageHeight,
+  imageType,
+  noindex = false,
+} = Astro.props;
+
+if (!title?.trim() || !description?.trim()) {
+  throw new Error('Layout: informe title e description específicos para esta página.');
+}
+
+const siteUrl = Astro.site;
+if (!siteUrl) {
+  throw new Error('Layout: configure site em astro.config.mjs.');
+}
+
+
+if (!canonicalPath.startsWith('/') || canonicalPath.startsWith('//')) {
+  throw new Error('Layout: canonicalPath deve ser um caminho iniciado por /.');
+}
+const canonical = new URL(canonicalPath, siteUrl);
+if (canonical.origin !== siteUrl.origin) {
+  throw new Error('Layout: canonicalPath deve pertencer ao domínio configurado.');
+}
+canonical.search = '';
+canonical.hash = '';
+const canonicalUrl = canonical.href;
+
+const socialImageUrl = image ? new URL(image, siteUrl).href : undefined;
+if (socialImageUrl && !imageAlt?.trim()) {
+  throw new Error('Layout: informe imageAlt ao fornecer uma imagem de compartilhamento.');
+}
+
+const locales = { en: 'en_US', es: 'es_ES', 'pt-BR': 'pt_BR' };
+const personId = new URL('#person', siteUrl).href;
+const websiteId = new URL('#website', siteUrl).href;
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: 'Paloma Macedo',
+      url: siteUrl.href,
+      jobTitle: 'Senior Frontend Engineer',
+      sameAs: [
+        'https://github.com/palomaMacedo',
+        'https://www.linkedin.com/in/palomamacedofrontend',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: siteUrl.href,
+      name: 'La Loma.dev',
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: title,
+      description,
+      inLanguage: lang,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': personId },
+      ...(socialImageUrl && {
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: socialImageUrl,
+          caption: imageAlt,
+        },
+      }),
+    },
+  ],
+};
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Paloma Macedo" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta
+      name="robots"
+      content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'}
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="La Loma.dev" />
+    <meta property="og:locale" content={locales[lang]} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {
+      socialImageUrl && (
+        <>
+          <meta property="og:image" content={socialImageUrl} />
+          <meta property="og:image:alt" content={imageAlt} />
+          {imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
+          {imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
+          {imageType && <meta property="og:image:type" content={imageType} />}
+        </>
+      )
+    }
+
+    <meta name="twitter:card" content={socialImageUrl ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {
+      socialImageUrl && (
+        <>
+          <meta name="twitter:image" content={socialImageUrl} />
+          <meta name="twitter:image:alt" content={imageAlt} />
+        </>
+      )
+    }
+
+  
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#ffdf20" />
+
+  
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,15 +158,9 @@ const { title = 'La Loma.dev' } = Astro.props;
       rel="stylesheet"
     />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-
-    <meta name="viewport" content="width=device-width" />
+    <script is:inline type="application/ld+json" set:html={structuredDataJson} />
     <meta name="generator" content={Astro.generator} />
-
-    <title>{title}</title>
   </head>
-
   <body>
     <slot />
   </body>
