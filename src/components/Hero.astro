@@ -19,10 +19,14 @@ import palomaHero from '../assets/images/paloma.png';
       w-full
       max-w-7xl
       grid-cols-1
+      pt-28
       lg:grid-cols-12
+      lg:pt-24
     "
   >
-
+    <!-- =================================================
+         CONTENT
+    ================================================== -->
 
     <div
       class="
@@ -31,26 +35,26 @@ import palomaHero from '../assets/images/paloma.png';
         flex
         flex-col
         justify-center
-
         px-4
-        py-14
-
+        pt-8
+        pb-14
         sm:px-6
-        sm:py-16
-
+        sm:pt-10
+        sm:pb-16
         md:px-10
-        md:py-20
-
         lg:col-span-6
-        lg:py-24
+        lg:pt-12
         lg:pr-12
+        lg:pb-20
       "
     >
-   
+      <!-- =================================================
+           EYEBROW
+      ================================================== -->
 
       <div
         class="
-          mb-7
+          mb-6
           flex
           items-center
           gap-4
@@ -62,9 +66,7 @@ import palomaHero from '../assets/images/paloma.png';
             font-medium
             uppercase
             tracking-widest
-            text-white/80
-
-            sm:text-sm
+            text-white/60
           "
         >
           Senior Frontend Engineer
@@ -74,50 +76,52 @@ import palomaHero from '../assets/images/paloma.png';
           aria-hidden="true"
           class="
             h-px
-            w-8
-            shrink-0
+            w-10
             bg-emerald-500
-
-            sm:w-10
           "
         ></span>
       </div>
 
- 
+      <!-- =================================================
+           TITLE
+      ================================================== -->
 
       <h1
         class="
-          max-w-2xl
-
-          text-4xl
+          max-w-xl
+          text-5xl
           leading-none
           font-medium
           tracking-tight
-
-          sm:text-5xl
-          md:text-6xl
+          sm:text-6xl
           lg:text-7xl
         "
       >
         Making Complex
+
         <span class="block">
-          Things Feel Obvious<span
+          Things Feel
+        </span>
+
+        <span class="block">
+          Obvious<span
             class="text-yellow-300"
             aria-hidden="true"
           >.</span>
         </span>
       </h1>
 
+      <!-- =================================================
+           DESCRIPTION
+      ================================================== -->
+
       <p
         class="
-          mt-7
+          mt-8
           max-w-lg
-
           text-base
           leading-relaxed
           text-white/70
-
-          sm:mt-8
           sm:text-lg
         "
       >
@@ -125,51 +129,42 @@ import palomaHero from '../assets/images/paloma.png';
         with React, TypeScript and thoughtful architecture.
       </p>
 
+      <!-- =================================================
+           BUTTONS
+      ================================================== -->
+
       <div
         class="
-          mt-8
+          mt-9
           flex
-          w-full
           flex-col
           gap-3
-
-          sm:mt-10
-          sm:w-auto
           sm:flex-row
         "
       >
-   
+        <!-- LET'S TALK -->
 
         <a
           href="/talk"
           class="
             inline-flex
             min-h-12
-            w-full
             items-center
             justify-between
-            gap-6
-
+            gap-8
             bg-yellow-300
-
             px-6
             py-3
-
             text-xs
             font-black
-            tracking-wider
+            tracking-wide
             text-black
-
             transition-colors
             duration-200
-
             hover:bg-yellow-200
-
             focus-visible:outline-2
             focus-visible:outline-offset-4
             focus-visible:outline-yellow-300
-
-            sm:w-auto
           "
         >
           <span>
@@ -184,40 +179,31 @@ import palomaHero from '../assets/images/paloma.png';
           </span>
         </a>
 
-
+        <!-- VIEW WORK -->
 
         <a
           href="/work"
           class="
             inline-flex
             min-h-12
-            w-full
             items-center
             justify-between
-            gap-6
-
+            gap-8
             border
             border-white/30
-
             px-6
             py-3
-
             text-xs
             font-black
-            tracking-wider
+            tracking-wide
             text-white
-
             transition-colors
             duration-200
-
             hover:border-yellow-300
             hover:text-yellow-300
-
             focus-visible:outline-2
             focus-visible:outline-offset-4
             focus-visible:outline-yellow-300
-
-            sm:w-auto
           "
         >
           <span>
@@ -232,20 +218,61 @@ import palomaHero from '../assets/images/paloma.png';
           </span>
         </a>
       </div>
+
+      <!-- =================================================
+           SCROLL
+      ================================================== -->
+
+      <a
+        href="#contents"
+        class="
+          mt-14
+          inline-flex
+          w-fit
+          items-center
+          gap-2
+          text-xs
+          font-bold
+          uppercase
+          tracking-wider
+          text-white/70
+          transition-colors
+          hover:text-white
+          lg:mt-20
+        "
+      >
+        <span>
+          Scroll down
+        </span>
+
+        <span
+          aria-hidden="true"
+          class="
+            text-emerald-500
+          "
+        >
+          ↓
+        </span>
+      </a>
     </div>
 
-
+    <!-- =================================================
+         PORTRAIT
+    ================================================== -->
 
     <div
       class="
         relative
+        flex
         min-h-96
+        items-end
+        justify-center
         overflow-hidden
-
-        sm:min-h-screen
-
+        px-4
+        sm:px-6
         lg:col-span-6
         lg:min-h-full
+        lg:px-0
       "
     >
       <Image
@@ -259,33 +286,13 @@ import palomaHero from '../assets/images/paloma.png';
         loading="eager"
         fetchpriority="high"
         class="
-          absolute
-          inset-0
-          h-full
+          h-auto
           w-full
-          object-cover
-          object-top
+          max-w-2xl
+          object-contain
+          object-bottom
         "
       />
-
-    
-      <div
-        aria-hidden="true"
-        class="
-          pointer-events-none
-          absolute
-          inset-y-0
-          left-0
-          hidden
-          w-24
-
-          bg-linear-to-r
-          from-black
-          to-transparent
-
-          lg:block
-        "
-      ></div>
     </div>
   </div>
 </section>
