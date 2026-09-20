@@ -24,10 +24,6 @@ import palomaHero from '../assets/images/paloma.png';
       lg:pt-24
     "
   >
-    <!-- =================================================
-         CONTENT
-    ================================================== -->
-
     <div
       class="
         relative
@@ -48,13 +44,9 @@ import palomaHero from '../assets/images/paloma.png';
         lg:pb-20
       "
     >
-      <!-- =================================================
-           EYEBROW
-      ================================================== -->
-
       <div
         class="
-          mb-6
+          mb-7
           flex
           items-center
           gap-4
@@ -66,7 +58,8 @@ import palomaHero from '../assets/images/paloma.png';
             font-medium
             uppercase
             tracking-widest
-            text-white/60
+            text-white/70
+            sm:text-sm
           "
         >
           Senior Frontend Engineer
@@ -76,24 +69,23 @@ import palomaHero from '../assets/images/paloma.png';
           aria-hidden="true"
           class="
             h-px
-            w-10
+            w-8
+            shrink-0
             bg-emerald-500
+            sm:w-10
           "
         ></span>
       </div>
 
-      <!-- =================================================
-           TITLE
-      ================================================== -->
-
       <h1
         class="
-          max-w-xl
-          text-5xl
+          max-w-2xl
+          text-4xl
           leading-none
           font-medium
           tracking-tight
-          sm:text-6xl
+          sm:text-5xl
+          md:text-6xl
           lg:text-7xl
         "
       >
@@ -111,17 +103,14 @@ import palomaHero from '../assets/images/paloma.png';
         </span>
       </h1>
 
-      <!-- =================================================
-           DESCRIPTION
-      ================================================== -->
-
       <p
         class="
-          mt-8
+          mt-7
           max-w-lg
           text-base
           leading-relaxed
           text-white/70
+          sm:mt-8
           sm:text-lg
         "
       >
@@ -129,35 +118,33 @@ import palomaHero from '../assets/images/paloma.png';
         with React, TypeScript and thoughtful architecture.
       </p>
 
-      <!-- =================================================
-           BUTTONS
-      ================================================== -->
-
       <div
         class="
-          mt-9
+          mt-8
           flex
+          w-full
           flex-col
           gap-3
+          sm:mt-10
+          sm:w-auto
           sm:flex-row
         "
       >
-        <!-- LET'S TALK -->
-
         <a
           href="/talk"
           class="
             inline-flex
             min-h-12
+            w-full
             items-center
             justify-between
-            gap-8
+            gap-6
             bg-yellow-300
             px-6
             py-3
             text-xs
             font-black
-            tracking-wide
+            tracking-wider
             text-black
             transition-colors
             duration-200
@@ -165,6 +152,7 @@ import palomaHero from '../assets/images/paloma.png';
             focus-visible:outline-2
             focus-visible:outline-offset-4
             focus-visible:outline-yellow-300
+            sm:w-auto
           "
         >
           <span>
@@ -179,23 +167,22 @@ import palomaHero from '../assets/images/paloma.png';
           </span>
         </a>
 
-        <!-- VIEW WORK -->
-
         <a
           href="/work"
           class="
             inline-flex
             min-h-12
+            w-full
             items-center
             justify-between
-            gap-8
+            gap-6
             border
             border-white/30
             px-6
             py-3
             text-xs
             font-black
-            tracking-wide
+            tracking-wider
             text-white
             transition-colors
             duration-200
@@ -204,6 +191,7 @@ import palomaHero from '../assets/images/paloma.png';
             focus-visible:outline-2
             focus-visible:outline-offset-4
             focus-visible:outline-yellow-300
+            sm:w-auto
           "
         >
           <span>
@@ -219,10 +207,6 @@ import palomaHero from '../assets/images/paloma.png';
         </a>
       </div>
 
-      <!-- =================================================
-           SCROLL
-      ================================================== -->
-
       <a
         href="#contents"
         class="
@@ -237,6 +221,7 @@ import palomaHero from '../assets/images/paloma.png';
           tracking-wider
           text-white/70
           transition-colors
+          duration-200
           hover:text-white
           lg:mt-20
         "
@@ -247,18 +232,12 @@ import palomaHero from '../assets/images/paloma.png';
 
         <span
           aria-hidden="true"
-          class="
-            text-emerald-500
-          "
+          class="text-emerald-500"
         >
           ↓
         </span>
       </a>
     </div>
-
-    <!-- =================================================
-         PORTRAIT
-    ================================================== -->
 
     <div
       class="
@@ -272,6 +251,7 @@ import palomaHero from '../assets/images/paloma.png';
         sm:px-6
         lg:col-span-6
         lg:min-h-full
+        lg:justify-end
         lg:px-0
       "
     >
@@ -279,10 +259,7 @@ import palomaHero from '../assets/images/paloma.png';
         src={palomaHero}
         alt="Paloma Macedo, Senior Frontend Engineer"
         widths={[480, 640, 768, 960]}
-        sizes="
-          (max-width: 1023px) 100vw,
-          50vw
-        "
+        sizes="(max-width: 1023px) 100vw, 50vw"
         loading="eager"
         fetchpriority="high"
         class="
@@ -291,6 +268,7 @@ import palomaHero from '../assets/images/paloma.png';
           max-w-2xl
           object-contain
           object-bottom
+          lg:max-w-3xl
         "
       />
     </div>
