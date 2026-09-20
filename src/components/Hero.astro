@@ -1,99 +1,291 @@
 ---
-import { Image } from 'astro:assets'
-import palomaHero from '../assets/images/paloma.png'
+import { Image } from 'astro:assets';
+
+import palomaHero from '../assets/images/paloma.png';
 ---
 
 <section
   id="hero"
-  class="relative -mt-16 overflow-hidden bg-yellow-300
-         [clip-path:polygon(0_5%,100%_0,100%_96%,0_100%)]
-         md:-mt-20 md:min-h-[calc(100svh-96px)]
-         md:[clip-path:polygon(0_10%,100%_0,100%_86%,0_100%)]"
+  class="
+    overflow-hidden
+    bg-black
+    text-white
+  "
 >
   <div
-    class="relative mx-auto flex max-w-7xl flex-col px-6 pb-28 pt-28
-           md:min-h-[calc(100svh-96px)] md:px-10 md:pb-32 md:pt-24"
+    class="
+      mx-auto
+      grid
+      w-full
+      max-w-7xl
+      grid-cols-1
+      lg:grid-cols-12
+    "
   >
+
+
+    <div
+      class="
+        relative
+        z-10
+        flex
+        flex-col
+        justify-center
+
+        px-4
+        py-14
+
+        sm:px-6
+        sm:py-16
+
+        md:px-10
+        md:py-20
+
+        lg:col-span-6
+        lg:py-24
+        lg:pr-12
+      "
+    >
    
-    <div class="relative z-20 md:w-[58%]">
-      <div class="-rotate-2">
+
+      <div
+        class="
+          mb-7
+          flex
+          items-center
+          gap-4
+        "
+      >
         <p
-          class="font-sans text-xs font-extrabold tracking-wide
-                 text-emerald-600 uppercase
-                 sm:text-sm md:text-base"
+          class="
+            text-xs
+            font-medium
+            uppercase
+            tracking-widest
+            text-white/80
+
+            sm:text-sm
+          "
         >
-          A Field Guide to Digital Experiences
+          Senior Frontend Engineer
         </p>
-
-        <div
-          class="mt-1 h-1 w-16 -rotate-2 rounded-full
-                 bg-emerald-600 md:w-20"
-        >
-        </div>
-      </div>
-      <h1
-        class="mt-5 font-display font-extrabold leading-28
-               tracking-[-0.04em] text-black uppercase
-               text-[clamp(3.5rem,17vw,5.5rem)]
-               md:mt-6 md:text-[clamp(5rem,7.2vw,7rem)]"
-      >
-        <span class="block tracking-normal">Making</span>
-        <span class="block tracking-normal">Complex</span>
-        <span class="block tracking-normal">Things Feel</span>
-        <span class="block tracking-normal">Obvious.</span>
-      </h1>
-
-      <p
-        class="mt-6 max-w-md font-mono text-sm leading-relaxed
-               font-black text-black/80
-               sm:text-base md:mt-7"
-      >
-        I design digital experiences where
-        <br class="hidden sm:block" />
-        technology makes sense to people.
-      </p>
-
-      <a
-        href="/about"
-        class="group mt-7 inline-flex -rotate-2 items-center gap-4
-               bg-black px-5 py-4 font-mono text-sm leading-none
-               font-bold tracking-[0.03em] text-white uppercase
-               shadow-[6px_6px_0_#059669]
-               transition-transform duration-300
-               hover:-translate-y-1
-               sm:px-7 sm:py-5 sm:text-base
-               md:mt-8 md:gap-5 md:text-lg
-               md:shadow-[8px_8px_0_#059669]"
-      >
-        <span>Explore the guide</span>
 
         <span
           aria-hidden="true"
-          class="text-3xl font-bold text-emerald-500
-                 transition-transform duration-300 ease-out
-                 group-hover:translate-x-2 md:text-4xl"
-        >
-          →
+          class="
+            h-px
+            w-8
+            shrink-0
+            bg-emerald-500
+
+            sm:w-10
+          "
+        ></span>
+      </div>
+
+ 
+
+      <h1
+        class="
+          max-w-2xl
+
+          text-4xl
+          leading-none
+          font-medium
+          tracking-tight
+
+          sm:text-5xl
+          md:text-6xl
+          lg:text-7xl
+        "
+      >
+        Making Complex
+        <span class="block">
+          Things Feel Obvious<span
+            class="text-yellow-300"
+            aria-hidden="true"
+          >.</span>
         </span>
-      </a>
+      </h1>
+
+      <p
+        class="
+          mt-7
+          max-w-lg
+
+          text-base
+          leading-relaxed
+          text-white/70
+
+          sm:mt-8
+          sm:text-lg
+        "
+      >
+        I build accessible, scalable frontend experiences
+        with React, TypeScript and thoughtful architecture.
+      </p>
+
+      <div
+        class="
+          mt-8
+          flex
+          w-full
+          flex-col
+          gap-3
+
+          sm:mt-10
+          sm:w-auto
+          sm:flex-row
+        "
+      >
+   
+
+        <a
+          href="/talk"
+          class="
+            inline-flex
+            min-h-12
+            w-full
+            items-center
+            justify-between
+            gap-6
+
+            bg-yellow-300
+
+            px-6
+            py-3
+
+            text-xs
+            font-black
+            tracking-wider
+            text-black
+
+            transition-colors
+            duration-200
+
+            hover:bg-yellow-200
+
+            focus-visible:outline-2
+            focus-visible:outline-offset-4
+            focus-visible:outline-yellow-300
+
+            sm:w-auto
+          "
+        >
+          <span>
+            LET'S TALK
+          </span>
+
+          <span
+            aria-hidden="true"
+            class="text-lg"
+          >
+            →
+          </span>
+        </a>
+
+
+
+        <a
+          href="/work"
+          class="
+            inline-flex
+            min-h-12
+            w-full
+            items-center
+            justify-between
+            gap-6
+
+            border
+            border-white/30
+
+            px-6
+            py-3
+
+            text-xs
+            font-black
+            tracking-wider
+            text-white
+
+            transition-colors
+            duration-200
+
+            hover:border-yellow-300
+            hover:text-yellow-300
+
+            focus-visible:outline-2
+            focus-visible:outline-offset-4
+            focus-visible:outline-yellow-300
+
+            sm:w-auto
+          "
+        >
+          <span>
+            VIEW WORK
+          </span>
+
+          <span
+            aria-hidden="true"
+            class="text-lg"
+          >
+            ↗
+          </span>
+        </a>
+      </div>
     </div>
 
-    
+
+
     <div
-      class="relative z-10 mx-auto -mb-12 mt-10 w-full max-w-md
-             sm:w-4/5
-             md:absolute md:bottom-10 md:right-8 md:mb-0 md:mt-0
-             md:w-[55%] md:max-w-3xl
-             lg:right-4 lg:w-[58%]"
+      class="
+        relative
+        min-h-96
+        overflow-hidden
+
+        sm:min-h-screen
+
+        lg:col-span-6
+        lg:min-h-full
+      "
     >
       <Image
         src={palomaHero}
-        alt="Paloma Macedo"
-        class="h-auto w-lg object-contain object-bottom"
+        alt="Paloma Macedo, Senior Frontend Engineer"
+        widths={[480, 640, 768, 960]}
+        sizes="
+          (max-width: 1023px) 100vw,
+          50vw
+        "
         loading="eager"
+        fetchpriority="high"
+        class="
+          absolute
+          inset-0
+          h-full
+          w-full
+          object-cover
+          object-top
+        "
       />
-    </div>
 
     
+      <div
+        aria-hidden="true"
+        class="
+          pointer-events-none
+          absolute
+          inset-y-0
+          left-0
+          hidden
+          w-24
+
+          bg-linear-to-r
+          from-black
+          to-transparent
+
+          lg:block
+        "
+      ></div>
+    </div>
   </div>
 </section>
