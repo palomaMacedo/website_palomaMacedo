@@ -1,0 +1,346 @@
+---
+import { Image } from 'astro:assets';
+
+import aktivCover from '../assets/images/aktiv-cover.png';
+
+const projects = [
+  {
+    title: 'AKTIV+',
+    description:
+      'A positive support platform for people living with Parkinson’s, families and caregivers.',
+    image: aktivCover,
+    href: '/work/aktiv',
+    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
+  },
+];
+---
+
+<section
+  id="selected-work"
+  class="
+    bg-white
+    text-black
+  "
+>
+  <div
+    class="
+      mx-auto
+      w-full
+      max-w-7xl
+      px-4
+      py-16
+      sm:px-6
+      sm:py-20
+      md:px-10
+      lg:py-24
+    "
+  >
+    <div
+      class="
+        mb-8
+        flex
+        items-end
+        justify-between
+        gap-6
+      "
+    >
+      <div>
+        <div
+          class="
+            flex
+            items-center
+            gap-4
+          "
+        >
+          <p
+            class="
+              text-xs
+              font-semibold
+              uppercase
+              tracking-widest
+              text-black/50
+            "
+          >
+            Featured projects
+          </p>
+
+          <span
+            aria-hidden="true"
+            class="
+              h-px
+              w-10
+              bg-emerald-500
+            "
+          ></span>
+        </div>
+
+        <h2
+          class="
+            mt-4
+            text-3xl
+            leading-tight
+            font-medium
+            tracking-tight
+            sm:text-4xl
+            md:text-5xl
+          "
+        >
+          Selected Work & Case
+        </h2>
+      </div>
+
+      <a
+        href="/work"
+        class="
+          group
+          hidden
+          items-center
+          gap-3
+          text-xs
+          font-bold
+          uppercase
+          tracking-wide
+          text-black/60
+          transition-colors
+          duration-200
+          hover:text-black
+          sm:flex
+        "
+      >
+        <span
+          class="
+            flex
+            size-10
+            items-center
+            justify-center
+            rounded-full
+            bg-black
+            text-lg
+            text-white
+            transition-colors
+            duration-200
+            group-hover:bg-yellow-300
+            group-hover:text-black
+          "
+          aria-hidden="true"
+        >
+          →
+        </span>
+
+        <span>
+          See all
+        </span>
+      </a>
+    </div>
+
+    <div
+      class="
+        flex
+        flex-col
+        gap-10
+      "
+    >
+      {
+        projects.map((project) => (
+          <article
+            class="
+              group
+              relative
+              overflow-hidden
+              bg-zinc-900
+            "
+          >
+            <a
+              href={project.href}
+              class="
+                block
+                focus-visible:outline-2
+                focus-visible:outline-offset-4
+                focus-visible:outline-black
+              "
+              aria-label={`View ${project.title} case study`}
+            >
+              <div
+                class="
+                  relative
+                  aspect-video
+                  overflow-hidden
+                  bg-zinc-200
+                "
+              >
+                <Image
+                  src={project.image}
+                  alt={`${project.title} project preview`}
+                  widths={[640, 960, 1280, 1600]}
+                  sizes="
+                    (max-width: 767px) 100vw,
+                    (max-width: 1279px) 90vw,
+                    1200px
+                  "
+                  loading="lazy"
+                  class="
+                    h-full
+                    w-full
+                    object-cover
+                    transition-transform
+                    duration-500
+                    group-hover:scale-105
+                  "
+                />
+
+                <div
+                  aria-hidden="true"
+                  class="
+                    absolute
+                    inset-0
+                    bg-linear-to-t
+                    from-black/70
+                    via-transparent
+                    to-transparent
+                    md:hidden
+                  "
+                ></div>
+              </div>
+
+              <div
+                class="
+                  bg-black
+                  p-6
+                  text-white
+                  md:absolute
+                  md:bottom-6
+                  md:left-6
+                  md:max-w-md
+                  md:bg-black/90
+                  md:p-8
+                  md:backdrop-blur-sm
+                  lg:bottom-8
+                  lg:left-8
+                "
+              >
+                <div
+                  class="
+                    flex
+                    items-start
+                    justify-between
+                    gap-6
+                  "
+                >
+                  <div>
+                    <h3
+                      class="
+                        text-3xl
+                        font-medium
+                        tracking-tight
+                        sm:text-4xl
+                      "
+                    >
+                      {project.title}
+                    </h3>
+
+                    <p
+                      class="
+                        mt-4
+                        max-w-sm
+                        text-sm
+                        leading-relaxed
+                        text-white/70
+                        sm:text-base
+                      "
+                    >
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <span
+                    aria-hidden="true"
+                    class="
+                      hidden
+                      text-2xl
+                      text-yellow-300
+                      transition-transform
+                      duration-200
+                      group-hover:translate-x-1
+                      sm:block
+                    "
+                  >
+                    ↗
+                  </span>
+                </div>
+
+                <ul
+                  class="
+                    mt-6
+                    flex
+                    flex-wrap
+                    gap-2
+                  "
+                  aria-label={`${project.title} technologies`}
+                >
+                  {
+                    project.tags.map((tag) => (
+                      <li
+                        class="
+                          rounded-full
+                          border
+                          border-white/20
+                          px-3
+                          py-1
+                          text-xs
+                          font-medium
+                          text-white/70
+                        "
+                      >
+                        {tag}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <a
+      href="/work"
+      class="
+        mt-8
+        flex
+        w-full
+        items-center
+        justify-between
+        border-t
+        border-black/10
+        pt-5
+        text-xs
+        font-bold
+        uppercase
+        tracking-wide
+        text-black
+        sm:hidden
+      "
+    >
+      <span>
+        See all work
+      </span>
+
+      <span
+        aria-hidden="true"
+        class="
+          flex
+          size-10
+          items-center
+          justify-center
+          rounded-full
+          bg-black
+          text-lg
+          text-white
+        "
+      >
+        →
+      </span>
+    </a>
+  </div>
+</section>
