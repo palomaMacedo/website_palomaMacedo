@@ -2,21 +2,30 @@
 import EmblaCarousel from 'embla-carousel';
 import { Image } from 'astro:assets';
 
+import aktiv from '../assets/logos/aktiv-plus.png';
+import wxplus from '../assets/logos/wx-plus.png';
 import vtal from '../assets/logos/vtal.png';
 import oi from '../assets/logos/oi.png';
 import elumini from '../assets/logos/elumini.png';
-import qx3 from '../assets/logos/qx3.png';
 import grito from '../assets/logos/grito.png';
 import abramus from '../assets/logos/abramus.png';
 import wooza from '../assets/logos/wooza.png';
 import ecad from '../assets/logos/ecad.png';
-import e24h from '../assets/logos/e24h.png';
+import infoglobo from '../assets/logos/infoglobo.png';
+
 import midia3 from '../assets/logos/midia3.png';
+import e24h from '../assets/logos/e24h.png';
 import homewebbing from '../assets/logos/homewebbing.png';
-import wxplus from '../assets/logos/wx-plus.png';
+
+import qx3 from '../assets/logos/qx3.png';
 import netbureau from '../assets/logos/netbureau.png';
 
 const companies = [
+   {
+    name: 'Aktiv-plus',
+    logo: aktiv,
+  },
+
   {
     name: 'V.tal',
     logo: vtal,
@@ -29,14 +38,16 @@ const companies = [
     name: 'Elumini',
     logo: elumini,
   },
-  {
-    name: 'qx3',
-    logo: qx3,
+     {
+    name: 'Infoglobo',
+    logo: infoglobo,
   },
-  {
+   {
     name: 'Grito',
     logo: grito,
   },
+
+ 
   {
     name: 'Abramus',
     logo: abramus,
@@ -49,9 +60,14 @@ const companies = [
     name: 'ECAD',
     logo: ecad,
   },
+  
   {
     name: 'E24h',
     logo: e24h,
+  },
+  {
+    name: 'qx3',
+    logo: qx3,
   },
   {
     name: 'Mídia 3',
@@ -93,36 +109,7 @@ const companies = [
       md:py-6
     "
   >
-    <div
-      class="
-        mb-4
-        flex
-        items-center
-        gap-3
-      "
-    >
-      <h2
-        id="experience-title"
-        class="
-          text-xs
-          font-bold
-          uppercase
-          tracking-widest
-          text-black/50
-        "
-      >
-        Selected experience
-      </h2>
-
-      <span
-        class="
-          h-px
-          w-8
-          bg-emerald-500
-        "
-        aria-hidden="true"
-      ></span>
-    </div>
+   
 
     <div
       data-logo-carousel
