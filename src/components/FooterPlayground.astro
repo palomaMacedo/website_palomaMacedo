@@ -1,0 +1,669 @@
+<section
+  class="
+    relative
+    hidden
+    h-96
+    w-full
+    overflow-hidden
+    bg-black
+    md:block
+    lg:h-112
+  "
+  data-footer-playground
+  aria-hidden="true"
+>
+  <div
+    class="
+      absolute
+      inset-0
+      overflow-hidden
+    "
+    data-playground-container
+  ></div>
+</section>
+
+<script>
+  const photos = [
+    '/images/playground/paloma-01.webp',
+    '/images/playground/paloma-02.webp',
+    '/images/playground/paloma-03.webp',
+    '/images/playground/paloma-04.webp',
+    '/images/playground/paloma-05.webp',
+    '/images/playground/paloma-06.webp',
+    '/images/playground/paloma-07.webp',
+    '/images/playground/paloma-08.webp',
+    '/images/playground/paloma-09.webp',
+    '/images/playground/paloma-10.webp',
+  ];
+
+  const colors = [
+    'rgb(253 224 71)',
+    'rgb(16 185 129)',
+  ];
+
+  async function initFooterPlayground() {
+ 
+
+    if (window.innerWidth < 768) {
+      return;
+    }
+
+    const playground =
+      document.querySelector(
+        '[data-footer-playground]'
+      );
+
+    if (!(playground instanceof HTMLElement)) {
+      return;
+    }
+
+    if (
+      playground.dataset.initialized === 'true'
+    ) {
+      return;
+    }
+
+    const container =
+      playground.querySelector(
+        '[data-playground-container]'
+      );
+
+    if (!(container instanceof HTMLElement)) {
+      return;
+    }
+
+    playground.dataset.initialized = 'true';
+
+
+
+    const {
+      Bodies,
+      Body,
+      Engine,
+      Events,
+      Mouse,
+      MouseConstraint,
+      Runner,
+      World,
+    } = await import('matter-js');
+
+ 
+    const prefersReducedMotion =
+      window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+    if (prefersReducedMotion) {
+      createStaticVersion(
+        container
+      );
+
+      return;
+    }
+
+
+    const engine =
+      Engine.create();
+
+    engine.gravity.y = 1;
+
+    const runner =
+      Runner.create();
+
+   
+
+    const width =
+      playground.clientWidth;
+
+    const height =
+      playground.clientHeight;
+
+   
+
+    const bubbleCount =
+      width >= 1280
+        ? 120
+        : 100;
+
+ 
+   const minimumSize = 46;
+    const maximumSize = 94;
+
+
+
+    const wallThickness = 80;
+
+    const floor =
+      Bodies.rectangle(
+        width / 2,
+        height + wallThickness / 2,
+        width + wallThickness * 2,
+        wallThickness,
+        {
+          isStatic: true,
+        }
+      );
+
+    const leftWall =
+      Bodies.rectangle(
+        -wallThickness / 2,
+        height / 2,
+        wallThickness,
+        height * 3,
+        {
+          isStatic: true,
+        }
+      );
+
+    const rightWall =
+      Bodies.rectangle(
+        width + wallThickness / 2,
+        height / 2,
+        wallThickness,
+        height * 3,
+        {
+          isStatic: true,
+        }
+      );
+
+    World.add(
+      engine.world,
+      [
+        floor,
+        leftWall,
+        rightWall,
+      ]
+    );
+
+  
+
+    const bubbles = [];
+
+    for (
+      let index = 0;
+      index < bubbleCount;
+      index++
+    ) {
+      const size =
+        randomBetween(
+          minimumSize,
+          maximumSize
+        );
+
+      const radius =
+        size / 2;
+
+     
+      const minimumX =
+        radius + 4;
+
+      const maximumX =
+        Math.max(
+          width - radius - 4,
+          minimumX
+        );
+
+      const x =
+        randomBetweenDecimal(
+          minimumX,
+          maximumX
+        );
+
+    
+      const y =
+        -size -
+        Math.random() *
+          height *
+          2.6;
+
+      const body =
+        Bodies.circle(
+          x,
+          y,
+          radius,
+          {
+            restitution:
+              randomBetweenDecimal(
+                0.2,
+                0.48
+              ),
+
+            friction: 0.08,
+
+            frictionStatic: 0.1,
+
+            frictionAir:
+              randomBetweenDecimal(
+                0.008,
+                0.018
+              ),
+
+            density:
+              randomBetweenDecimal(
+                0.0015,
+                0.0024
+              ),
+          }
+        );
+
+
+      Body.setAngle(
+        body,
+        Math.random() *
+          Math.PI *
+          2
+      );
+
+    
+
+      Body.setVelocity(
+        body,
+        {
+          x:
+            randomBetweenDecimal(
+              -1.2,
+              1.2
+            ),
+
+          y:
+            randomBetweenDecimal(
+              0,
+              0.7
+            ),
+        }
+      );
+
+      const photo =
+        photos[
+          index %
+          photos.length
+        ];
+
+      const color =
+        colors[
+          index %
+          colors.length
+        ];
+
+      const element =
+        createBubbleElement(
+          photo,
+          color,
+          size,
+          index
+        );
+
+      container.appendChild(
+        element
+      );
+
+      bubbles.push({
+        body,
+        element,
+        size,
+      });
+
+      World.add(
+        engine.world,
+        body
+      );
+    }
+
+  
+    const mouse =
+      Mouse.create(
+        playground
+      );
+
+    const mouseConstraint =
+      MouseConstraint.create(
+        engine,
+        {
+          mouse,
+
+          constraint: {
+            stiffness: 0.18,
+            damping: 0.1,
+
+            render: {
+              visible: false,
+            },
+          },
+        }
+      );
+
+    World.add(
+      engine.world,
+      mouseConstraint
+    );
+
+
+    playground.style.cursor =
+      'grab';
+
+    Events.on(
+      mouseConstraint,
+      'startdrag',
+      () => {
+        playground.style.cursor =
+          'grabbing';
+      }
+    );
+
+    Events.on(
+      mouseConstraint,
+      'enddrag',
+      () => {
+        playground.style.cursor =
+          'grab';
+      }
+    );
+
+  
+    Events.on(
+      engine,
+      'afterUpdate',
+      () => {
+        bubbles.forEach(
+          ({
+            body,
+            element,
+            size,
+          }) => {
+            const x =
+              body.position.x -
+              size / 2;
+
+            const y =
+              body.position.y -
+              size / 2;
+
+            element.style.transform = `
+              translate3d(
+                ${x}px,
+                ${y}px,
+                0
+              )
+              rotate(
+                ${body.angle}rad
+              )
+            `;
+          }
+        );
+      }
+    );
+
+    Runner.run(
+      runner,
+      engine
+    );
+  }
+
+ 
+  function createBubbleElement(
+    photo,
+    color,
+    size,
+    index
+  ) {
+    const bubble =
+      document.createElement(
+        'div'
+      );
+
+    bubble.style.position =
+      'absolute';
+
+    bubble.style.top =
+      '0';
+
+    bubble.style.left =
+      '0';
+
+    bubble.style.width =
+      `${size}px`;
+
+    bubble.style.height =
+      `${size}px`;
+
+    bubble.style.borderRadius =
+      '9999px';
+
+    bubble.style.overflow =
+      'hidden';
+
+    bubble.style.backgroundColor =
+      color;
+
+    bubble.style.pointerEvents =
+      'none';
+
+    bubble.style.userSelect =
+      'none';
+
+    bubble.style.willChange =
+      'transform';
+
+ 
+    bubble.style.boxShadow =
+      'inset 0 0 0 1px rgba(0, 0, 0, 0.08)';
+
+    const image =
+      document.createElement(
+        'img'
+      );
+
+    image.src =
+      photo;
+
+    image.alt =
+      '';
+
+    image.draggable =
+      false;
+
+    image.style.display =
+      'block';
+
+    image.style.width =
+      '100%';
+
+    image.style.height =
+      '100%';
+
+    image.style.objectFit =
+      'cover';
+
+    image.style.objectPosition =
+      getObjectPosition(index);
+
+   
+
+    image.style.filter =
+      'grayscale(1) contrast(1.08)';
+
+    image.style.mixBlendMode =
+      'multiply';
+
+    image.style.pointerEvents =
+      'none';
+
+    image.style.userSelect =
+      'none';
+
+    bubble.appendChild(
+      image
+    );
+
+    return bubble;
+  }
+
+
+  function getObjectPosition(
+    index
+  ) {
+    const positions = [
+      '50% 45%',
+      '50% 42%',
+      '50% 43%',
+      '52% 46%',
+      '50% 42%',
+      '50% 44%',
+      '50% 40%',
+      '50% 42%',
+      '48% 43%',
+      '50% 42%',
+    ];
+
+    return positions[
+      index %
+      positions.length
+    ];
+  }
+
+  /*
+   * ==========================================
+   * REDUCED MOTION
+   * ==========================================
+   */
+
+  function createStaticVersion(
+    container
+  ) {
+    const quantity = 28;
+
+    for (
+      let index = 0;
+      index < quantity;
+      index++
+    ) {
+      const size =
+        randomBetween(
+          46,
+          90
+        );
+
+      const photo =
+        photos[
+          index %
+          photos.length
+        ];
+
+      const color =
+        colors[
+          index %
+          colors.length
+        ];
+
+      const bubble =
+        createBubbleElement(
+          photo,
+          color,
+          size,
+          index
+        );
+
+      bubble.style.position =
+        'relative';
+
+      bubble.style.display =
+        'inline-block';
+
+      bubble.style.margin =
+        '4px';
+
+      bubble.style.transform =
+        `rotate(${
+          randomBetweenDecimal(
+            -12,
+            12
+          )
+        }deg)`;
+
+      container.appendChild(
+        bubble
+      );
+    }
+
+    container.style.display =
+      'flex';
+
+    container.style.flexWrap =
+      'wrap';
+
+    container.style.alignContent =
+      'flex-end';
+
+    container.style.justifyContent =
+      'center';
+  }
+
+  /*
+   * ==========================================
+   * HELPERS
+   * ==========================================
+   */
+
+  function randomBetween(
+    min,
+    max
+  ) {
+    return Math.floor(
+      Math.random() *
+        (max - min + 1)
+    ) + min;
+  }
+
+  function randomBetweenDecimal(
+    min,
+    max
+  ) {
+    return (
+      Math.random() *
+        (max - min) +
+      min
+    );
+  }
+
+  /*
+   * ==========================================
+   * INIT
+   * ==========================================
+   */
+
+  initFooterPlayground();
+
+  document.addEventListener(
+    'astro:page-load',
+    initFooterPlayground
+  );
+
+  /*
+   * Se você abrir no mobile e aumentar
+   * a janela para desktop durante o dev,
+   * a animação também inicializa.
+   */
+
+  let resizeTimer;
+
+  window.addEventListener(
+    'resize',
+    () => {
+      window.clearTimeout(
+        resizeTimer
+      );
+
+      resizeTimer =
+        window.setTimeout(
+          () => {
+            if (
+              window.innerWidth >= 768
+            ) {
+              initFooterPlayground();
+            }
+          },
+          200
+        );
+    }
+  );
+</script>
