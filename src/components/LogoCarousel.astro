@@ -1,0 +1,283 @@
+---
+import EmblaCarousel from 'embla-carousel';
+import { Image } from 'astro:assets';
+
+import vtal from '../assets/logos/vtal.png';
+import oi from '../assets/logos/oi.png';
+import elumini from '../assets/logos/elumini.png';
+import qx3 from '../assets/logos/qx3.png';
+import grito from '../assets/logos/grito.png';
+import abramus from '../assets/logos/abramus.png';
+import wooza from '../assets/logos/wooza.png';
+import ecad from '../assets/logos/ecad.png';
+import e24h from '../assets/logos/e24h.png';
+import midia3 from '../assets/logos/midia3.png';
+import homewebbing from '../assets/logos/homewebbing.png';
+import wxplus from '../assets/logos/wx-plus.png';
+import netbureau from '../assets/logos/netbureau.png';
+
+const companies = [
+  {
+    name: 'V.tal',
+    logo: vtal,
+  },
+  {
+    name: 'Oi',
+    logo: oi,
+  },
+  {
+    name: 'Elumini',
+    logo: elumini,
+  },
+  {
+    name: 'qx3',
+    logo: qx3,
+  },
+  {
+    name: 'Grito',
+    logo: grito,
+  },
+  {
+    name: 'Abramus',
+    logo: abramus,
+  },
+  {
+    name: 'Wooza Ventures',
+    logo: wooza,
+  },
+  {
+    name: 'ECAD',
+    logo: ecad,
+  },
+  {
+    name: 'E24h',
+    logo: e24h,
+  },
+  {
+    name: 'Mídia 3',
+    logo: midia3,
+  },
+  {
+    name: 'HomeWebbing',
+    logo: homewebbing,
+  },
+  {
+    name: 'WX+',
+    logo: wxplus,
+  },
+  {
+    name: 'NETbureau',
+    logo: netbureau,
+  },
+];
+---
+
+<section
+  class="
+    border-y
+    border-black/10
+    bg-white
+    text-black
+  "
+  aria-labelledby="experience-title"
+>
+  <div
+    class="
+      mx-auto
+      w-full
+      max-w-7xl
+      px-4
+      py-5
+      sm:px-6
+      md:px-10
+      md:py-6
+    "
+  >
+    <div
+      class="
+        mb-4
+        flex
+        items-center
+        gap-3
+      "
+    >
+      <h2
+        id="experience-title"
+        class="
+          text-xs
+          font-bold
+          uppercase
+          tracking-widest
+          text-black/50
+        "
+      >
+        Selected experience
+      </h2>
+
+      <span
+        class="
+          h-px
+          w-8
+          bg-emerald-500
+        "
+        aria-hidden="true"
+      ></span>
+    </div>
+
+    <div
+      data-logo-carousel
+      class="relative"
+    >
+      <div
+        data-embla-viewport
+        class="
+          cursor-grab
+          overflow-hidden
+          active:cursor-grabbing
+        "
+        tabindex="0"
+        role="region"
+        aria-label="Companies and projects"
+      >
+        <div
+          class="
+            flex
+            touch-pan-y
+            items-center
+          "
+        >
+          {
+            companies.map((company) => (
+              <div
+                class="
+                  min-w-0
+                  flex-none
+                  basis-36
+                  px-4
+                  sm:basis-44
+                  sm:px-5
+                  md:basis-48
+                  lg:basis-52
+                "
+              >
+                <div
+                  class="
+                    flex
+                    h-28
+                    w-48
+                    items-center
+                    justify-center
+                    sm:h-32
+                    md:w-56
+                  "
+                >
+                  <Image
+                    src={company.logo}
+                    alt={`${company.name} logo`}
+                    loading="lazy"
+                    class="
+                      h-auto
+                      max-h-14
+                      w-auto
+                      max-w-full
+                      object-contain
+                      grayscale
+                      opacity-60
+                      transition
+                      duration-300
+                      hover:opacity-100
+                      sm:max-h-16
+                      md:max-h-29
+                    "
+                  />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div
+        aria-hidden="true"
+        class="
+          pointer-events-none
+          absolute
+          inset-y-0
+          left-0
+          w-8
+          bg-linear-to-r
+          from-white
+          to-transparent
+          sm:w-12
+        "
+      ></div>
+
+      <div
+        aria-hidden="true"
+        class="
+          pointer-events-none
+          absolute
+          inset-y-0
+          right-0
+          w-8
+          bg-linear-to-l
+          from-white
+          to-transparent
+          sm:w-12
+        "
+      ></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+
+  function initLogoCarousel() {
+    const carousels =
+      document.querySelectorAll('[data-logo-carousel]');
+
+    carousels.forEach((carousel) => {
+      if (!(carousel instanceof HTMLElement)) {
+        return;
+      }
+
+      if (carousel.dataset.initialized === 'true') {
+        return;
+      }
+
+      const viewport =
+        carousel.querySelector('[data-embla-viewport]');
+
+      if (!(viewport instanceof HTMLElement)) {
+        return;
+      }
+
+      carousel.dataset.initialized = 'true';
+
+      const embla = EmblaCarousel(viewport, {
+        align: 'start',
+        loop: true,
+        dragFree: true,
+        slidesToScroll: 1,
+      });
+
+      viewport.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') {
+          embla.scrollNext();
+        }
+
+        if (event.key === 'ArrowLeft') {
+          embla.scrollPrev();
+        }
+      });
+    });
+  }
+
+  initLogoCarousel();
+
+  document.addEventListener(
+    'astro:page-load',
+    initLogoCarousel
+  );
+</script>
