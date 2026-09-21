@@ -1,10 +1,6 @@
 ---
 const pathname = Astro.url.pathname;
 
-/* =====================================================
-   LANGUAGE
-===================================================== */
-
 type Locale = 'en' | 'es' | 'pt-BR';
 
 const currentLocale: Locale =
@@ -54,10 +50,6 @@ const localePath = (locale: Locale) => {
     ? prefix
     : `${prefix}${basePath}`;
 };
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
 
 const localize = (path: string) => {
   if (currentLocale === 'en') {
@@ -124,10 +116,6 @@ const isActive = (href: string) =>
       md:py-4
     "
   >
-    <!-- =================================================
-         LOGO
-    ================================================== -->
-
     <a
       href={localize('/')}
       aria-label="La Loma.dev - Home"
@@ -158,10 +146,6 @@ const isActive = (href: string) =>
         >_</span>
       </span>
     </a>
-
-    <!-- =================================================
-         DESKTOP NAVIGATION
-    ================================================== -->
 
     <nav
       aria-label="Main navigation"
@@ -225,71 +209,74 @@ const isActive = (href: string) =>
         }
       </ul>
 
-      <!-- =================================================
-           LANGUAGE
-      ================================================== -->
-
       <div
         class="
+          relative
           flex
           items-center
           border-l
           border-white/20
           pl-5
         "
-        aria-label="Select language"
       >
-        {
-          languages.map((language, index) => (
-            <span class="flex items-center">
-              {index > 0 && (
-                <span
-                  class="
-                    mx-2
-                    text-xs
-                    text-white/30
-                  "
-                  aria-hidden="true"
-                >
-                  /
-                </span>
-              )}
+        <label
+          for="language-select"
+          class="sr-only"
+        >
+          Select language
+        </label>
 
-              <a
-                href={localePath(language.locale)}
+        <select
+          id="language-select"
+          data-language-select
+          aria-label="Select language"
+          class="
+            cursor-pointer
+            appearance-none
+            bg-transparent
+            py-2
+            pr-6
+            text-xs
+            font-bold
+            tracking-wide
+            text-white
+            outline-none
+            transition-colors
+            duration-200
+            hover:text-yellow-300
+            focus:text-yellow-300
+          "
+        >
+          {
+            languages.map((language) => (
+              <option
+                value={localePath(language.locale)}
+                selected={currentLocale === language.locale}
                 lang={language.locale}
-                hreflang={language.locale}
-                aria-label={`Change language to ${language.label}`}
-                aria-current={
-                  currentLocale === language.locale
-                    ? 'page'
-                    : undefined
-                }
-                class:list={[
-                  `
-                    py-2
-                    text-xs
-                    font-bold
-                    tracking-wide
-                    transition-colors
-                    duration-200
-                    hover:text-yellow-300
-                  `,
-                  currentLocale === language.locale
-                    ? 'text-yellow-300'
-                    : 'text-white/50',
-                ]}
+                class="
+                  bg-black
+                  text-white
+                "
               >
                 {language.code}
-              </a>
-            </span>
-          ))
-        }
-      </div>
+              </option>
+            ))
+          }
+        </select>
 
-      <!-- =================================================
-           CTA
-      ================================================== -->
+        <span
+          aria-hidden="true"
+          class="
+            pointer-events-none
+            absolute
+            right-0
+            text-xs
+            text-yellow-300
+          "
+        >
+          ↓
+        </span>
+      </div>
 
       <a
         href={talkHref}
@@ -316,10 +303,6 @@ const isActive = (href: string) =>
         LET'S TALK
       </a>
     </nav>
-
-    <!-- =================================================
-         MOBILE BUTTON
-    ================================================== -->
 
     <button
       type="button"
@@ -349,8 +332,6 @@ const isActive = (href: string) =>
           w-7
         "
       >
-        <!-- first fry -->
-
         <span
           data-menu-line="top"
           class="
@@ -365,8 +346,6 @@ const isActive = (href: string) =>
             duration-300
           "
         ></span>
-
-        <!-- second fry -->
 
         <span
           data-menu-line="bottom"
@@ -385,10 +364,6 @@ const isActive = (href: string) =>
       </span>
     </button>
   </div>
-
-  <!-- =================================================
-       MOBILE MENU
-  ================================================== -->
 
   <div
     id="mobile-menu"
@@ -420,8 +395,6 @@ const isActive = (href: string) =>
         sm:px-6
       "
     >
-      <!-- NAV LINKS -->
-
       <ul class="flex flex-col">
         {
           navItems.map((item) => (
@@ -478,8 +451,6 @@ const isActive = (href: string) =>
         }
       </ul>
 
-      <!-- LANGUAGE -->
-
       <div
         class="
           mt-7
@@ -530,6 +501,7 @@ const isActive = (href: string) =>
                   data-mobile-link
                   lang={language.locale}
                   hreflang={language.locale}
+                  aria-label={`Change language to ${language.label}`}
                   aria-current={
                     currentLocale === language.locale
                       ? 'page'
@@ -557,8 +529,6 @@ const isActive = (href: string) =>
           }
         </div>
       </div>
-
-      <!-- CTA -->
 
       <a
         href={talkHref}
@@ -627,11 +597,24 @@ const isActive = (href: string) =>
     const mobileLinks =
       header.querySelectorAll('[data-mobile-link]');
 
+    const languageSelect =
+      header.querySelector('[data-language-select]');
+
     if (
       !(button instanceof HTMLButtonElement) ||
       !(menu instanceof HTMLElement)
     ) {
       return;
+    }
+
+    if (languageSelect instanceof HTMLSelectElement) {
+      languageSelect.addEventListener(
+        'change',
+        () => {
+          window.location.href =
+            languageSelect.value;
+        }
+      );
     }
 
     const updateMenuPosition = () => {
@@ -752,6 +735,7 @@ const isActive = (href: string) =>
 
         if (window.innerWidth >= 768) {
           closeMenu();
+
           return;
         }
 
