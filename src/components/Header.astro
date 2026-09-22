@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+
+import logoLinkedin from '../assets/images/linkedin-logo.svg';
+import logoChat from '../assets/images/chats.svg';
 const pathname = Astro.url.pathname;
 
 type Locale = 'en' | 'es' | 'pt-BR';
@@ -202,7 +206,7 @@ const isActive = (href: string) =>
                     : 'text-white',
                 ]}
               >
-                <span class="text-emerald-500">// </span>{item.label}
+                <span class="text-emerald-500">//  </span>{item.label}
               </a>
             </li>
           ))
@@ -278,16 +282,17 @@ const isActive = (href: string) =>
         </span>
       </div>
 
-      <a
-        href={talkHref}
+    
+       <a
+        href="mailto:macedo.paloma@gmail.com?subject=🤘 Hi Paloma, I'd like to hire you"
         class="
           inline-flex
           min-h-10
           items-center
           justify-center
           bg-yellow-300
-          px-5
-          py-2
+          px-1.5
+          py-1.5
           text-xs
           font-black
           tracking-wide
@@ -301,7 +306,18 @@ const isActive = (href: string) =>
           rounded-full
         "
       >
-        LET'S TALK
+
+       <Image
+        src={ logoChat}
+        alt="Paloma Macedo, Senior Frontend Engineer"
+        width="32"
+        height="32"
+        class="
+        size-8
+        object-contain
+        sm:size-10"
+        />
+      
       </a>
     </nav>
 

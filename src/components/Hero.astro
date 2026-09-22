@@ -4,7 +4,8 @@ import { Image } from 'astro:assets';
 import palomaHero from '../assets/images/paloma.png';
 ---
 
-<section id="hero" 
+<section
+  id="hero"
   class="
     overflow-hidden
     bg-black
@@ -13,36 +14,43 @@ import palomaHero from '../assets/images/paloma.png';
 >
   <div
     class="
+      relative
       mx-auto
-    grid
-    w-full
-    max-w-7xl
-    grid-cols-1
-    pt-24
-    lg:grid-cols-12
-    lg:pt-20
+      grid
+      w-full
+      max-w-7xl
+      grid-cols-1
+      pt-24
+      lg:min-h-[calc(100svh-80px)]
+      lg:grid-cols-12
+      lg:pt-20
     "
   >
+    <!-- ==================================================
+         HERO CONTENT
+    =================================================== -->
+
     <div
       class="
-         relative
-    z-10
-    flex
-    flex-col
-    justify-center
-    px-4
-    pt-8
-    pb-8
-    sm:px-6
-    sm:pt-10
-    sm:pb-10
-    md:px-10
-    lg:col-span-6
-    lg:pt-12
-    lg:pr-12
-    lg:pb-10
+        relative
+        z-20
+        flex
+        flex-col
+        justify-center
+        px-4
+        pt-8
+        pb-8
+        sm:px-6
+        sm:pt-10
+        sm:pb-10
+        md:px-10
+        lg:col-span-6
+        lg:pt-12
+        lg:pr-12
+        lg:pb-20
       "
     >
+      <!-- Eyebrow -->
       <div
         class="
           mb-7
@@ -55,9 +63,9 @@ import palomaHero from '../assets/images/paloma.png';
           class="
             text-xs
             font-medium
-            uppercase
             tracking-widest
             text-white/70
+            uppercase
             sm:text-sm
           "
         >
@@ -76,6 +84,7 @@ import palomaHero from '../assets/images/paloma.png';
         ></span>
       </div>
 
+      <!-- Title -->
       <h1
         class="
           max-w-2xl
@@ -96,12 +105,13 @@ import palomaHero from '../assets/images/paloma.png';
 
         <span class="block">
           Obvious<span
-            class="text-yellow-300"
             aria-hidden="true"
+            class="text-yellow-300"
           >.</span>
         </span>
       </h1>
 
+      <!-- Description -->
       <p
         class="
           mt-7
@@ -117,6 +127,7 @@ import palomaHero from '../assets/images/paloma.png';
         with React, TypeScript and thoughtful architecture.
       </p>
 
+      <!-- CTA -->
       <div
         class="
           mt-8
@@ -129,6 +140,7 @@ import palomaHero from '../assets/images/paloma.png';
           sm:flex-row
         "
       >
+        <!-- Let's Talk -->
         <a
           href="/talk"
           class="
@@ -138,6 +150,7 @@ import palomaHero from '../assets/images/paloma.png';
             items-center
             justify-between
             gap-6
+            rounded-full
             bg-yellow-300
             px-6
             py-3
@@ -152,12 +165,9 @@ import palomaHero from '../assets/images/paloma.png';
             focus-visible:outline-offset-4
             focus-visible:outline-yellow-300
             sm:w-auto
-            rounded-full
           "
         >
-          <span>
-            LET'S TALK
-          </span>
+          <span>LET'S TALK</span>
 
           <span
             aria-hidden="true"
@@ -167,6 +177,7 @@ import palomaHero from '../assets/images/paloma.png';
           </span>
         </a>
 
+        <!-- View Work -->
         <a
           href="/work"
           class="
@@ -176,6 +187,7 @@ import palomaHero from '../assets/images/paloma.png';
             items-center
             justify-between
             gap-6
+            rounded-full
             border
             border-white/30
             px-6
@@ -192,12 +204,9 @@ import palomaHero from '../assets/images/paloma.png';
             focus-visible:outline-offset-4
             focus-visible:outline-yellow-300
             sm:w-auto
-            rounded-full
           "
         >
-          <span>
-            VIEW WORK
-          </span>
+          <span>VIEW WORK</span>
 
           <span
             aria-hidden="true"
@@ -207,8 +216,11 @@ import palomaHero from '../assets/images/paloma.png';
           </span>
         </a>
       </div>
-    
     </div>
+
+    <!-- ==================================================
+         IMAGE / CODE AREA
+    =================================================== -->
 
     <div
       class="
@@ -221,11 +233,67 @@ import palomaHero from '../assets/images/paloma.png';
         px-4
         sm:px-6
         lg:col-span-6
-        lg:min-h-full
+        lg:min-h-[calc(100svh-80px)]
         lg:justify-end
         lg:px-0
       "
     >
+      <!-- Decorative Code -->
+      <div
+        aria-hidden="true"
+        class="
+          pointer-events-none
+          absolute
+          inset-0
+          z-0
+          hidden
+          items-center
+          justify-center
+          overflow-hidden
+          lg:flex
+        "
+      >
+        <pre
+          class="
+            translate-x-10
+            select-none
+            font-mono
+            text-sm
+            leading-7
+            whitespace-pre
+            opacity-[0.12]
+            xl:translate-x-16
+            xl:text-base
+            xl:leading-8
+          "
+        ><code><span class="text-white/70">const</span> <span class="text-yellow-300">problem</span> <span class="text-white/70">=</span> <span class="text-emerald-500">understand</span><span class="text-white/70">();</span>
+
+<span class="text-white/70">const</span> <span class="text-yellow-300">solution</span> <span class="text-white/70">=</span> <span class="text-emerald-500">connect</span><span class="text-white/70">(&#123;</span>
+  <span class="text-white">design</span><span class="text-white/70">,</span>
+  <span class="text-white">engineering</span><span class="text-white/70">,</span>
+  <span class="text-white">architecture</span><span class="text-white/70">,</span>
+  <span class="text-white">ai</span><span class="text-white/70">,</span>
+<span class="text-white/70">&#125;);</span>
+
+<span class="text-emerald-500">build</span><span class="text-white/70">(solution);</span></code></pre>
+      </div>
+
+      <!-- Subtle overlay -->
+      <div
+        aria-hidden="true"
+        class="
+          pointer-events-none
+          absolute
+          inset-0
+          z-[1]
+          bg-gradient-to-t
+          from-black/20
+          via-transparent
+          to-transparent
+        "
+      ></div>
+
+      <!-- Paloma -->
       <Image
         src={palomaHero}
         alt="Paloma Macedo, Senior Frontend Engineer"
@@ -234,49 +302,75 @@ import palomaHero from '../assets/images/paloma.png';
         loading="eager"
         fetchpriority="high"
         class="
+          relative
+          z-10
           h-auto
           w-full
-          max-w-2xl
           object-contain
           object-bottom
-          lg:max-w-3xl
+          lg:max-w-2xl
         "
       />
-      
     </div>
-    <a
-  href="#expertise"
-  class="scroll-mouse group absolute bottom-44 left-1/2 z-30
-         flex -translate-x-1/2 flex-col items-center gap-2
-         text-emerald-500
-         transition-colors duration-300
-         hover:text-white
-         focus-visible:outline-2
-         focus-visible:outline-offset-4
-         focus-visible:outline-emerald-500"
-  aria-label="Scroll to content"
->
-  <span class="mouse-icon" aria-hidden="true">
-    <span class="mouse-wheel"></span>
-  </span>
 
-  <span
-    class="font-mono text-[10px] font-bold uppercase
-           tracking-[0.25em]"
-  >
-    Scroll
-  </span>
-</a>
+    <!-- ==================================================
+         SCROLL INDICATOR
+    =================================================== -->
+
+    <a
+      href="#expertise"
+      aria-label="Scroll to expertise"
+      class="
+        scroll-mouse
+        absolute
+        bottom-8
+        left-1/2
+        z-30
+        hidden
+        flex-col
+        items-center
+        gap-2
+        text-emerald-500
+        transition-colors
+        duration-300
+        hover:text-white
+        focus-visible:outline-2
+        focus-visible:outline-offset-4
+        focus-visible:outline-emerald-500
+        lg:flex
+      "
+    >
+      <span
+        aria-hidden="true"
+        class="mouse-icon"
+      >
+        <span class="mouse-wheel"></span>
+      </span>
+
+      <span
+        class="
+          font-mono
+          text-[10px]
+          font-bold
+          tracking-[0.25em]
+          uppercase
+        "
+      >
+        Scroll
+      </span>
+    </a>
   </div>
 </section>
 
 <style>
   .scroll-mouse {
+    transform: translateX(-50%);
     animation: mouse-float 2.5s ease-in-out infinite;
   }
 
   .mouse-icon {
     position: relative;
+    display: block;
 
     width: 30px;
     height: 48px;
@@ -330,7 +424,7 @@ import palomaHero from '../assets/images/paloma.png';
     }
 
     50% {
-      transform: translate(-50%, 5px);
+      transform: translate(-50%, 4px);
     }
   }
 
