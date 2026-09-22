@@ -240,6 +240,102 @@ import palomaHero from '../assets/images/paloma.png';
           lg:max-w-3xl
         "
       />
+      
     </div>
+    <a
+  href="#expertise"
+  class="scroll-mouse group absolute bottom-10 left-1/2 z-30
+         flex -translate-x-1/2 flex-col items-center gap-2
+         text-emerald-400
+         transition-colors duration-300
+         hover:text-white
+         focus-visible:outline-2
+         focus-visible:outline-offset-4
+         focus-visible:outline-emerald-400"
+  aria-label="Scroll to content"
+>
+  <span class="mouse-icon" aria-hidden="true">
+    <span class="mouse-wheel"></span>
+  </span>
+
+  <span
+    class="font-mono text-[10px] font-bold uppercase
+           tracking-[0.25em]"
+  >
+    Scroll
+  </span>
+</a>
   </div>
 </section>
+
+<style>
+  .scroll-mouse {
+    animation: mouse-float 2.5s ease-in-out infinite;
+  }
+
+  .mouse-icon {
+    position: relative;
+
+    width: 30px;
+    height: 48px;
+
+    border: 2px solid currentColor;
+    border-radius: 999px;
+  }
+
+  .mouse-wheel {
+    position: absolute;
+
+    top: 8px;
+    left: 50%;
+
+    width: 2px;
+    height: 9px;
+
+    border-radius: 999px;
+
+    background: currentColor;
+
+    transform: translateX(-50%);
+
+    animation: mouse-wheel 1.8s ease-in-out infinite;
+  }
+
+  @keyframes mouse-wheel {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 0);
+    }
+
+    30% {
+      opacity: 1;
+    }
+
+    70% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(-50%, 13px);
+    }
+  }
+
+  @keyframes mouse-float {
+    0%,
+    100% {
+      transform: translate(-50%, 0);
+    }
+
+    50% {
+      transform: translate(-50%, 5px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-mouse,
+    .mouse-wheel {
+      animation: none;
+    }
+  }
+</style>
