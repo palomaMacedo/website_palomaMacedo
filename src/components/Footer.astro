@@ -9,8 +9,6 @@ const socialLinks = [
     href: 'https://github.com/palomaMacedo',
   },
 ];
-
-const currentYear = new Date().getFullYear();
 ---
 
 <footer
@@ -42,6 +40,7 @@ const currentYear = new Date().getFullYear();
         lg:gap-16
       "
     >
+      <!-- Brand / Introduction -->
       <div
         class="
           lg:col-span-5
@@ -109,6 +108,7 @@ const currentYear = new Date().getFullYear();
         </p>
       </div>
 
+      <!-- Links -->
       <div
         class="
           flex
@@ -123,9 +123,9 @@ const currentYear = new Date().getFullYear();
             class="
               text-xs
               font-semibold
-              uppercase
               tracking-widest
               text-white/40
+              uppercase
             "
           >
             Connect
@@ -144,7 +144,7 @@ const currentYear = new Date().getFullYear();
                 <a
                   href={social.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   class="
                     group
                     flex
@@ -156,6 +156,9 @@ const currentYear = new Date().getFullYear();
                     transition-colors
                     duration-200
                     hover:text-yellow-300
+                    focus-visible:outline-2
+                    focus-visible:outline-offset-4
+                    focus-visible:outline-yellow-300
                   "
                 >
                   <span
@@ -197,6 +200,9 @@ const currentYear = new Date().getFullYear();
                 transition-colors
                 duration-200
                 hover:text-yellow-300
+                focus-visible:outline-2
+                focus-visible:outline-offset-4
+                focus-visible:outline-yellow-300
               "
             >
               <span
@@ -224,42 +230,13 @@ const currentYear = new Date().getFullYear();
           </nav>
         </div>
 
+        <!-- Back to top -->
         <div
           class="
             flex
-            flex-col
-            gap-6
-            sm:flex-row
-            sm:items-end
-            sm:justify-between
+            justify-end
           "
         >
-          <div>
-            <p
-              class="
-                text-xs
-                font-semibold
-                uppercase
-                tracking-widest
-                text-emerald-500
-              "
-            >
-              Stay curious.
-            </p>
-
-            <p
-              class="
-                mt-2
-                max-w-xs
-                text-sm
-                leading-relaxed
-                text-white/50
-              "
-            >
-              Keep building. Keep learning. Help people.
-            </p>
-          </div>
-
           <a
             href="#hero"
             class="
@@ -269,12 +246,15 @@ const currentYear = new Date().getFullYear();
               gap-3
               text-xs
               font-bold
-              uppercase
               tracking-wider
-              text-white
+              text-emerald-500
+              uppercase
               transition-colors
               duration-200
               hover:text-yellow-300
+              focus-visible:outline-2
+              focus-visible:outline-offset-4
+              focus-visible:outline-emerald-500
             "
           >
             <span>
@@ -294,27 +274,6 @@ const currentYear = new Date().getFullYear();
           </a>
         </div>
       </div>
-    </div>
-
-    <div
-      class="
-        mt-12
-        flex
-        flex-col
-        gap-3
-        border-t
-        border-white/10
-        pt-6
-        text-xs
-        text-white/35
-        sm:flex-row
-        sm:items-center
-        sm:justify-between
-        lg:mt-16
-      "
-    >
-   
-     
     </div>
   </div>
 </footer>
