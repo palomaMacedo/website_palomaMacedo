@@ -1,11 +1,39 @@
 ---
+const projectQuestions = [
+  {
+    number: '01',
+    question: 'What problem does AKTIV+ solve, and who is it designed for?',
+    answer:
+      'AKTIV+ was created to address a gap that many families face after a Parkinson’s diagnosis: limited access to specialized support, lack of practical guidance, and the feeling that life has suddenly become defined by the disease.\n\nWe want to change that.\n\nAKTIV+ supports people living with Parkinson’s, their families, and caregivers through accessible information, movement and cognitive activities, and practical tools for everyday life.\n\nBecause Parkinson’s changes the way a person lives, but it should not take away their autonomy, connection, or possibility of living a meaningful life.\n\nAKTIV+ is about helping people adapt, stay active, and live better with Parkinson’s.',
+  },
+
+  {
+    number: '02',
+    question: 'What is your role in AKTIV+, and what are you responsible for?',
+    answer:
+      'I am the founder and creator of AKTIV+, a project born from my personal experience living closely with Parkinson’s in my family.\n\nMy role is to turn real everyday needs into a useful digital product. I work across product vision, user experience, frontend architecture, development, and technical decision-making.\n\nThe stack includes React, Next.js, TypeScript, Tailwind CSS, shadcn/ui, Turborepo, and Python for backend and AI-related features.\n\nI am also exploring artificial intelligence and computer vision to support movement analysis and, in the future, provide more meaningful feedback for people living with Parkinson’s.\n\nAKTIV+ brings together my experience in frontend engineering, architecture, product thinking, and AI experimentation — always starting from a real human problem and using technology to help improve the lives of people living with Parkinson’s.',
+  },
+
+ {
+  number: '03',
+  question: 'What has been the biggest technical challenge so far?',
+  answer:
+    'The biggest technical challenge has been understanding which technologies can truly bring value to people living with Parkinson’s and how to translate movement into a meaningful digital experience.\n\nTechnically, I am exploring an architecture based on different layers: capturing movement through the browser, using computer vision to analyze it, extracting relevant movement metrics, sending structured data to the backend, and presenting progress and feedback through the user dashboard.\n\nWhenever possible, the idea is to process movement locally on the user’s device, reducing latency and limiting the need to send video data to external services.\n\nThe goal is not simply to add AI to the product, but to understand how technologies such as computer vision and movement analysis can support exercises, identify useful patterns, and help people with Parkinson’s stay active in a way that is accessible and meaningful for their daily lives.',
+},
+];
+
+
 const items = [
   {
     number: '01',
+
     title: 'Front-end developer',
+
     description:
       'More than 15 years in frontend. I’ve built, maintained, migrated, and improved systems. I’ve worked with legacy code, started products from scratch, led teams, succeeded, failed, worked hard, cried, and smiled.\n\nI’ve seen jQuery give way to new ways of building interfaces, React change the game, Hooks change the way we write React, and now I’m seeing AI become part of the team.',
+
     icon: 'ph-duotone ph-code',
+
     technologies: [
       'HTML',
       'CSS',
@@ -18,10 +46,14 @@ const items = [
 
   {
     number: '02',
+
     title: 'Solution Architecture',
+
     description:
       'I faced major challenges and entered a completely new world, one that changed the way I build software and choose technologies. At first, architecture felt like a big puzzle. Today, I understand that what matters most is seeing the whole picture, understanding how each part connects, and putting the pieces together with purpose.',
+
     icon: 'ph-duotone ph-angle',
+
     technologies: [
       'Frontend Architecture',
       'REST APIs',
@@ -34,10 +66,14 @@ const items = [
 
   {
     number: '04',
+
     title: 'Neuroscience & Behavior',
+
     description:
       'Neuroscience has been a dream of mine since I was nine years old. Years later, it became part of my education and the way I understand people and technology. Today, connecting neuroscience, software, and AI feels like bringing together ideas that have been part of my life for a long time.',
+
     icon: 'ph-duotone ph-brain',
+
     technologies: [
       'Neuroscience',
       'Behavior',
@@ -49,10 +85,14 @@ const items = [
 
   {
     number: '05',
+
     title: 'Next Steps',
+
     description:
       'My next steps are focused on expanding my technical skills. I want to go deeper into security, improve my Python skills, and continue building AKTIV+, connecting frontend, backend, AI, and neuroscience in a real product.',
+
     icon: 'ph-duotone ph-steps',
+
     technologies: [
       'Python',
       'AI',
@@ -87,6 +127,8 @@ const items = [
   >
     <!-- LEFT -->
     <div class="lg:col-span-5">
+
+    
       <div class="flex items-center gap-4">
         <p
           class="
@@ -106,6 +148,7 @@ const items = [
         ></span>
       </div>
 
+
       <h2
         class="
           mt-6
@@ -121,6 +164,7 @@ const items = [
         I connect people, technology, and real-world needs.
       </h2>
 
+    
       <p
         class="
           mt-6
@@ -138,6 +182,111 @@ const items = [
         real product.
       </p>
 
+      <!-- AKTIV+ QUESTIONS -->
+      <div
+        class="
+          mt-8
+          max-w-lg
+          border-t
+          border-black/15
+        "
+      >
+        {
+          projectQuestions.map((item) => (
+            <details
+              class="
+                group
+                border-b
+                border-black/15
+              "
+            >
+              <summary
+                class="
+                  flex
+                  cursor-pointer
+                  list-none
+                  items-center
+                  gap-4
+                  py-5
+                  [&::-webkit-details-marker]:hidden
+                "
+              >
+                <!-- NUMBER -->
+                <span
+                  class="
+                    shrink-0
+                    text-xs
+                    font-semibold
+                    text-black/40
+                  "
+                >
+                  {item.number}
+                </span>
+
+                <!-- QUESTION -->
+                <span
+                  class="
+                    flex-1
+                    text-sm
+                    font-bold
+                    leading-snug
+                    text-black
+                    sm:text-base
+                  "
+                >
+                  {item.question}
+                </span>
+
+                <!-- PLUS -->
+                <span
+                  aria-hidden="true"
+                  class="
+                    flex
+                    size-7
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-black/20
+                    text-lg
+                    leading-none
+                    transition-all
+                    duration-200
+                    group-open:rotate-45
+                    group-hover:border-emerald-500
+                    group-hover:bg-emerald-500
+                  "
+                >
+                  +
+                </span>
+              </summary>
+
+              <!-- ANSWER -->
+              <div
+                class="
+                  pb-5
+                  pl-9
+                  pr-10
+                "
+              >
+                <p
+                  class="
+                    text-sm
+                    leading-relaxed
+                    text-black/60
+                    sm:text-base
+                  "
+                >
+                  {item.answer}
+                </p>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+
+      <!-- CTA -->
       <a
         href="/talk"
         class="
@@ -166,9 +315,14 @@ const items = [
           sm:w-auto
         "
       >
-        <span>LET'S WORK TOGETHER</span>
+        <span>
+         See the AKTIV+ Case
+        </span>
 
-        <span aria-hidden="true" class="text-lg">
+        <span
+          aria-hidden="true"
+          class="text-lg"
+        >
           →
         </span>
       </a>
@@ -206,6 +360,7 @@ const items = [
               sm:py-7
             "
           >
+            <!-- NUMBER -->
             <span
               class="
                 shrink-0
@@ -217,6 +372,7 @@ const items = [
               {item.number}
             </span>
 
+            <!-- ICON -->
             <div
               class="
                 flex
@@ -234,7 +390,10 @@ const items = [
               ></i>
             </div>
 
+            <!-- CONTENT -->
             <div class="min-w-0 flex-1">
+
+              <!-- TITLE -->
               <h3
                 class="
                   text-lg
@@ -247,6 +406,7 @@ const items = [
                 {item.title}
               </h3>
 
+              <!-- GREEN LINE -->
               <span
                 aria-hidden="true"
                 class="
@@ -256,10 +416,12 @@ const items = [
                   w-10
                   bg-emerald-500
                   transition-colors
+                  duration-200
                   group-hover:bg-black
                 "
               ></span>
 
+              <!-- DESCRIPTION -->
               <p
                 class="
                   mt-3
@@ -299,6 +461,7 @@ const items = [
                         tracking-wide
                         text-black/60
                         transition-colors
+                        duration-200
                         group-hover:border-black/25
                         group-hover:text-black
                       "
