@@ -2,48 +2,71 @@
 const items = [
   {
     number: '01',
-    title: 'About',
-    description: 'Who I am, what I believe and how I see the world.',
-    icon: '/icons/about.svg',
-    href: '/about',
+    title: 'Front-end developer',
+    description:
+      'More than 15 years in frontend. I’ve built, maintained, migrated, and improved systems. I’ve worked with legacy code, started products from scratch, led teams, succeeded, failed, worked hard, cried, and smiled.\n\nI’ve seen jQuery give way to new ways of building interfaces, React change the game, Hooks change the way we write React, and now I’m seeing AI become part of the team.',
+    icon: 'ph-duotone ph-code',
+    technologies: [
+      'HTML',
+      'CSS',
+      'JavaScript',
+      'React',
+      'TypeScript',
+      'Next.js',
+    ],
   },
+
   {
     number: '02',
-    title: 'Work',
-    description: 'Selected projects, case studies and digital experiences.',
-    icon: '/icons/work.svg',
-    href: '/work',
+    title: 'Solution Architecture',
+    description:
+      'I faced major challenges and entered a completely new world, one that changed the way I build software and choose technologies. At first, architecture felt like a big puzzle. Today, I understand that what matters most is seeing the whole picture, understanding how each part connects, and putting the pieces together with purpose.',
+    icon: 'ph-duotone ph-angle',
+    technologies: [
+      'Frontend Architecture',
+      'REST APIs',
+      'PostgreSQL',
+      'Docker',
+      'CI/CD',
+      'OWASP',
+    ],
   },
-  {
-    number: '03',
-    title: 'Experience',
-    description: 'Roles, challenges and the path that shaped my work.',
-    icon: '/icons/experience.svg',
-    href: '/experience',
-  },
+
   {
     number: '04',
-    title: 'Shelf',
-    description: 'Books, ideas, tools and things worth keeping.',
-    icon: '/icons/shelf.svg',
-    href: '/shelf',
+    title: 'Neuroscience & Behavior',
+    description:
+      'Neuroscience has been a dream of mine since I was nine years old. Years later, it became part of my education and the way I understand people and technology. Today, connecting neuroscience, software, and AI feels like bringing together ideas that have been part of my life for a long time.',
+    icon: 'ph-duotone ph-brain',
+    technologies: [
+      'Neuroscience',
+      'Behavior',
+      'Cognition',
+      'Human-centered Design',
+      'AI',
+    ],
   },
+
   {
     number: '05',
-    title: 'Talk',
-    description: 'Have a project, opportunity or idea? Let’s talk.',
-    icon: '/icons/talk.svg',
-    href: '/talk',
+    title: 'Next Steps',
+    description:
+      'My next steps are focused on expanding my technical skills. I want to go deeper into security, improve my Python skills, and continue building AKTIV+, connecting frontend, backend, AI, and neuroscience in a real product.',
+    icon: 'ph-duotone ph-steps',
+    technologies: [
+      'Python',
+      'AI',
+      'Backend',
+      'Web Security',
+      'AKTIV+',
+    ],
   },
 ];
 ---
 
 <section
   id="expertise"
-  class="
-    bg-white
-    text-black
-  "
+  class="bg-white text-black"
 >
   <div
     class="
@@ -62,18 +85,9 @@ const items = [
       lg:py-24
     "
   >
-    <div
-      class="
-        lg:col-span-5
-      "
-    >
-      <div
-        class="
-          flex
-          items-center
-          gap-4
-        "
-      >
+    <!-- LEFT -->
+    <div class="lg:col-span-5">
+      <div class="flex items-center gap-4">
         <p
           class="
             text-xs
@@ -88,11 +102,7 @@ const items = [
 
         <span
           aria-hidden="true"
-          class="
-            h-px
-            w-10
-            bg-emerald-500
-          "
+          class="h-px w-10 bg-emerald-500"
         ></span>
       </div>
 
@@ -108,7 +118,7 @@ const items = [
           lg:text-6xl
         "
       >
-       I connect people, technology, and real-world needs.
+        I connect people, technology, and real-world needs.
       </h2>
 
       <p
@@ -121,7 +131,11 @@ const items = [
           sm:text-lg
         "
       >
-       Currently, I work as a Senior Frontend Engineer and I am developing AKTIV+, a platform created to support people with Parkinson’s, their families, and caregivers. I am responsible for developing the project and integrating artificial intelligence to help patients stay active. Throughout my career, I have worked on engineering initiatives related to component libraries and frontend platforms, collaborating closely with designers, engineers, DevOps, and cybersecurity teams.
+        Currently, I’m developing AKTIV+, a platform designed to support
+        people with Parkinson’s, their families, and caregivers. I work
+        across all areas of the project, from product and UX to frontend,
+        backend, architecture, and AI, turning ideas and research into a
+        real product.
       </p>
 
       <a
@@ -134,6 +148,7 @@ const items = [
           items-center
           justify-between
           gap-8
+          rounded-full
           bg-black
           px-6
           py-3
@@ -149,22 +164,17 @@ const items = [
           focus-visible:outline-offset-4
           focus-visible:outline-black
           sm:w-auto
-          rounded-full
         "
       >
-        <span>
-          LET'S WORK TOGETHER
-        </span>
+        <span>LET'S WORK TOGETHER</span>
 
-        <span
-          aria-hidden="true"
-          class="text-lg"
-        >
+        <span aria-hidden="true" class="text-lg">
           →
         </span>
       </a>
     </div>
 
+    <!-- RIGHT -->
     <div
       class="
         flex
@@ -175,8 +185,7 @@ const items = [
     >
       {
         items.map((item) => (
-          <a
-            href={item.href}
+          <article
             class="
               group
               flex
@@ -186,16 +195,15 @@ const items = [
               border
               border-black/10
               px-5
-              py-5
+              py-6
               transition-colors
               duration-200
               hover:border-black/30
               hover:bg-emerald-500
               sm:flex-row
-              sm:items-center
               sm:gap-6
               sm:px-7
-              sm:py-6
+              sm:py-7
             "
           >
             <span
@@ -217,30 +225,16 @@ const items = [
                 items-center
                 justify-center
                 rounded-full
-               
                 sm:size-24
               "
             >
-              <img
-                src={item.icon}
-                alt=""
-                width="32"
-                height="32"
-                loading="lazy"
-                class="
-                  size-8
-                  object-contain
-                  sm:size-14
-                "
-              />
+              <i
+                class={`${item.icon} text-[32px] leading-none sm:text-[56px]`}
+                aria-hidden="true"
+              ></i>
             </div>
 
-            <div
-              class="
-                min-w-0
-                flex-1
-              "
-            >
+            <div class="min-w-0 flex-1">
               <h3
                 class="
                   text-lg
@@ -261,6 +255,8 @@ const items = [
                   h-0.5
                   w-10
                   bg-emerald-500
+                  transition-colors
+                  group-hover:bg-black
                 "
               ></span>
 
@@ -268,6 +264,7 @@ const items = [
                 class="
                   mt-3
                   max-w-xl
+                  whitespace-pre-line
                   text-sm
                   leading-relaxed
                   text-black/60
@@ -276,24 +273,43 @@ const items = [
               >
                 {item.description}
               </p>
-            </div>
 
-            <span
-              aria-hidden="true"
-              class="
-                hidden
-                shrink-0
-                text-3xl
-                transition-transform
-                duration-200
-                group-hover:translate-x-1
-                sm:block
-                hover:bg-emerald-500
-              "
-            >
-              →
-            </span>
-          </a>
+              <!-- TECHNOLOGIES -->
+              <ul
+                class="
+                  mt-5
+                  flex
+                  flex-wrap
+                  gap-2
+                "
+                aria-label={`${item.title} technologies`}
+              >
+                {
+                  item.technologies.map((technology) => (
+                    <li
+                      class="
+                        rounded-full
+                        border
+                        border-black/15
+                        px-3
+                        py-1.5
+                        text-[11px]
+                        font-bold
+                        uppercase
+                        tracking-wide
+                        text-black/60
+                        transition-colors
+                        group-hover:border-black/25
+                        group-hover:text-black
+                      "
+                    >
+                      {technology}
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </article>
         ))
       }
     </div>
