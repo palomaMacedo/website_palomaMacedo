@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 
 import palomaHero from '../assets/images/paloma.png';
-
 ---
 
 <section
@@ -27,7 +26,7 @@ import palomaHero from '../assets/images/paloma.png';
       lg:pt-20
     "
   >
-  
+    <!-- LEFT: PRESENTATION -->
     <div
       class="
         relative
@@ -48,10 +47,10 @@ import palomaHero from '../assets/images/paloma.png';
         lg:pb-20
       "
     >
-     
+      <!-- ROLE -->
       <div
         class="
-          mb-7
+          my-7
           flex
           items-center
           gap-4
@@ -67,7 +66,7 @@ import palomaHero from '../assets/images/paloma.png';
             sm:text-sm
           "
         >
-          Senior Frontend Engineer
+          Senior Frontend Engineer & Web Architect
         </p>
 
         <span
@@ -82,7 +81,7 @@ import palomaHero from '../assets/images/paloma.png';
         ></span>
       </div>
 
-      
+      <!-- HEADLINE -->
       <h1
         class="
           max-w-2xl
@@ -95,22 +94,21 @@ import palomaHero from '../assets/images/paloma.png';
           lg:text-7xl
         "
       >
-        Hi everyone! 
-
-        <span class="block">
-        My name is
-        </span>
+        Hello,
 
         <span class="block text-yellow-300">
-        Paloma.
+         everyone!
         </span>
+
+      
       </h1>
 
-     
-      <p
+      <!-- STORYTELLING -->
+      <div
         class="
           mt-7
           max-w-lg
+          space-y-3
           text-base
           leading-relaxed
           text-white/70
@@ -118,9 +116,87 @@ import palomaHero from '../assets/images/paloma.png';
           sm:text-lg
         "
       >
-       I am an independent creative developer from Rio de Janeiro, Brazil, focused on React, TypeScript, SEO, and Frontend Architecture, using AI to explore and build better solutions.
-      </p>
+        <p>
+          I'm Paloma Macedo, a Senior Frontend Engineer & Web Architect
+          with 18 years of experience building and modernizing web applications.
+        </p>
 
+        <p>
+          My journey started with design and the web. Over time, I moved
+          deeper into frontend engineering, solution architecture,
+          and user experience.
+        </p>
+
+        <p>
+          Across 50+ projects, I've connected engineering, accessibility,
+          performance, and SEO.
+        </p>
+      </div>
+
+      <!-- EXPERIENCE HIGHLIGHTS -->
+      <div
+        class="
+          mt-8
+          grid
+          grid-cols-3
+          gap-3
+          border-t
+          border-white/15
+          pt-6
+          sm:mt-10
+          sm:gap-5
+        "
+      >
+        <div>
+          <p class="text-2xl font-semibold text-yellow-300 sm:text-3xl">
+            18+
+          </p>
+
+          <p
+            class="
+              mt-1
+              text-[10px]
+              tracking-wider
+              text-white/60
+              uppercase
+              sm:text-xs
+            "
+          >
+            Years
+          </p>
+
+          <p class="mt-1 text-xs text-white/70">
+            Building for the Web
+          </p>
+        </div>
+
+        <div>
+          <p class="text-2xl font-semibold text-yellow-300 sm:text-3xl">
+            50+
+          </p>
+
+          <p
+            class="
+              mt-1
+              text-[10px]
+              tracking-wider
+              text-white/60
+              uppercase
+              sm:text-xs
+            "
+          >
+            Projects
+          </p>
+
+          <p class="mt-1 text-xs text-white/70">
+            Across Industries
+          </p>
+        </div>
+
+        
+      </div>
+
+      <!-- CALLS TO ACTION -->
       <div
         class="
           mt-8
@@ -133,9 +209,9 @@ import palomaHero from '../assets/images/paloma.png';
           sm:flex-row
         "
       >
-      
-        <a
-          href="/talk"
+        <a 
+          href="https://www.linkedin.com/in/palomamacedofrontend/" 
+          target="_blank"
           class="
             inline-flex
             min-h-12
@@ -161,11 +237,9 @@ import palomaHero from '../assets/images/paloma.png';
           "
         >
           <span class="flex items-center gap-2">
-            <i class="ph-duotone  ph-linkedin-logo text-3xl"></i>
-  
-
-  LET'S TALK
-</span>
+            <i class="ph-duotone ph-linkedin-logo text-3xl"></i>
+            LET'S TALK
+          </span>
 
           <span
             aria-hidden="true"
@@ -175,7 +249,6 @@ import palomaHero from '../assets/images/paloma.png';
           </span>
         </a>
 
-      
         <a
           href="/work"
           class="
@@ -216,7 +289,7 @@ import palomaHero from '../assets/images/paloma.png';
       </div>
     </div>
 
-    
+    <!-- RIGHT: PHOTO + CODE BACKGROUND -->
     <div
       class="
         relative
@@ -233,7 +306,7 @@ import palomaHero from '../assets/images/paloma.png';
         lg:px-0
       "
     >
-     
+      <!-- CODE BACKGROUND -->
       <div
         aria-hidden="true"
         class="
@@ -273,7 +346,7 @@ import palomaHero from '../assets/images/paloma.png';
 <span class="text-emerald-500">build</span><span class="text-white/70">(solution);</span></code></pre>
       </div>
 
-    
+      <!-- PHOTO GRADIENT -->
       <div
         aria-hidden="true"
         class="
@@ -288,7 +361,7 @@ import palomaHero from '../assets/images/paloma.png';
         "
       ></div>
 
-     
+      <!-- PALOMA PHOTO - PRESERVED -->
       <Image
         src={palomaHero}
         alt="Paloma Macedo, Senior Frontend Engineer"
@@ -308,7 +381,7 @@ import palomaHero from '../assets/images/paloma.png';
       />
     </div>
 
-  
+    <!-- SCROLL INDICATOR -->
     <a
       href="#expertise"
       aria-label="Scroll to expertise"
@@ -363,29 +436,21 @@ import palomaHero from '../assets/images/paloma.png';
   .mouse-icon {
     position: relative;
     display: block;
-
     width: 30px;
     height: 48px;
-
     border: 2px solid currentColor;
     border-radius: 999px;
   }
 
   .mouse-wheel {
     position: absolute;
-
     top: 8px;
     left: 50%;
-
     width: 2px;
     height: 9px;
-
     border-radius: 999px;
-
     background: currentColor;
-
     transform: translateX(-50%);
-
     animation: mouse-wheel 1.8s ease-in-out infinite;
   }
 
